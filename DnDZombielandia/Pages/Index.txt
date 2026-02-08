@@ -1,0 +1,74 @@
+﻿@page
+@model IndexModel
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Inventario de Jugadores</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <h1>Inventario de Campaña</h1>
+
+    <!-- JUGADOR -->
+    <section id="jugador">
+        <h2>Jugador</h2>
+        <label> Nombre del jugador: <input type="text" id="nombreJugador"> </label>
+        <br><br>
+        <label> Personaje: <input type="text" id="nombrePersonaje"> </label>
+    </section>
+
+    <hr>
+
+    <!-- OBJETOS -->
+    <section id="objetos">
+        <h2>Objetos (max. 5)</h2>
+        <table id="tablaObjetos" border="1">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Origen</th>
+                    <th>Categoria 1</th>
+                    <th>Categoria 2</th>
+                    <th>Rasgos</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="objeto">
+                    <td> <input type="text" class="obj-nombre"> </td>
+                    <td> 
+                        <select class="obj-origen">
+                            <option value="">-- Seleccionar --</option>
+                            <option value="arcano">Arcano</option>
+                            <option value="druidico">Druidico</option>
+                            <option value="celestial">Celestial</option>
+                            <option value="maldito">Maldito</option>
+                        </select>
+                    </td>
+                    <td> <select class="obj-cat1"> <option value="">-- Seleccionar --</option> </select> </td>
+                    <td> <select class="obj-cat2"> <option value="">-- Ninguna --</option> </select> </td>
+                    <td> <select class="obj-rasgos"> <option value="">-- Seleccionar --</option> </select> </td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="button" id="btnAgregarObjeto"> Agregar objeto </button>
+        <p id="contadorObjetos">Objetos: 1 / 5</p>
+
+        <!-- SINERGIAS -->
+        <section id="sinergias">
+            <h2>Sinergias activas</h2>
+            <div id="listaSinergias"> <em>No hay sinergias activas</em> </div>
+        </section>
+    </section>
+
+    <!-- RASGOS -->
+    <section id="rasgos">
+        <h2>Rasgos activos</h2>
+        <div id="listaRasgos"> <em>No hay rasgos activos</em> </div>
+    </section>
+
+    <script src="~/js/rasgos.js" defer></script>
+    <script src="~/js/app.js" defer></script>
+</body>
+</html>
