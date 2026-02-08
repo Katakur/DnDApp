@@ -1,0 +1,20 @@
+/* Estilo para el botón de agregar rasgo */
+.btn-agregar-rasgo {
+    background-color: #4CAF50; /* Fondo verde */
+    color: white; /* Texto blanco */
+    padding: 8px 16px; /* Espaciado alrededor del texto */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor a mano */
+    font-size: 14px; /* Tamaño de texto */
+    margin-top: 5px; /* Espaciado superior */
+}
+
+    .btn-agregar-rasgo:hover {
+        background-color: #45a049; /* Cambio de color al pasar el ratón */
+    }
+
+    .btn-agregar-rasgo:focus {
+        outline: none; /* Elimina el contorno por defecto */
+        box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb; /* Para foco */
+    }
