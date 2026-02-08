@@ -1,5 +1,4 @@
-﻿alert("app.js cargado");
-
+﻿
 document.addEventListener("DOMContentLoaded", () => {
 
     /* =============================== CONFIGURACIÓN ================================ */
@@ -143,7 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
             nombre: "Psiónico",
             beneficios: {
                 2: "Inmunidad para que te lean la mente",
-                3: "las Tiradas de Salvación Inteligencia, Sabiduría y Carisma se realizan con Ventaja"
+                3: "Las Tiradas de Salvación Inteligencia, Sabiduría y Carisma se realizan con Ventaja"
             }
         },
         espiritual: {
@@ -157,7 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
             nombre: "Técnico",
             beneficios: {
                 2: "Tus Tiradas para mantener Concentración CD 10, se consideran un éxito automático",
-                3: "Puedes reforzar una de tus infusiones que requieran sintonización, aplicando un modulo de mejora adicional"
+                3: "Puedes reforzar una de tus infusiones que requieran sintonización, aplicando un módulo de mejora adicional"
             }
         }
     };
@@ -248,10 +247,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =============================== RASGOS OBJETOS ================================ */
-
     function abrirModalRasgos(fila) {
-        // Aquí abres tu modal, tal vez actualizando los valores de rasgos existentes en la fila
-        const modal = document.getElementById("modalRasgos");  // Asegúrate de tener un modal en tu HTML
+        const modal = document.getElementById("modalRasgos");
         modal.style.display = "block";  // Muestra el modal
 
         // Opcional: para poder cerrar el modal, puedes agregar un botón de cerrar
@@ -269,7 +266,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const modalBody = document.getElementById("modalRasgosBody");
 
         // Ejemplo de llenado del modal (puedes adaptarlo según cómo manejas los rasgos)
-        modalBody.innerHTML = ""; // Limpiamos el contenido del modal
+        modalBody.innerHTML = "";  // Limpiamos el contenido del modal
 
         for (const key in window.RASGOS) {
             const rasgo = window.RASGOS[key];
@@ -282,7 +279,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function obtenerRasgosSeleccionados() {
         const rasgos = [];
-
         document.querySelectorAll(".objeto").forEach(fila => {
             fila.querySelectorAll(".obj-rasgos").forEach(select => {
                 if (select && select.value) {
@@ -290,30 +286,26 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
         });
-
         return rasgos;
     }
 
-
     function actualizarRasgos(fila) {
         const contenedor = document.getElementById("listaRasgos");
-        contenedor.innerHTML = ""; // Limpiamos la lista de rasgos
+        contenedor.innerHTML = "";  // Limpiamos la lista de rasgos
 
-        const rasgosSeleccionados = obtenerRasgosSeleccionados(fila); // Obtenemos los rasgos seleccionados
+        const rasgosSeleccionados = obtenerRasgosSeleccionados(fila);  // Obtenemos los rasgos seleccionados
 
         if (rasgosSeleccionados.length === 0) {
             contenedor.innerHTML = "<em>No hay rasgos activos</em>";
             return;
         }
 
-        // Revisamos cada rasgo seleccionado
-        const rasgosYaAñadidos = new Set(); // Para evitar añadir rasgos repetidos
+        const rasgosYaAñadidos = new Set();  // Para evitar añadir rasgos repetidos
         rasgosSeleccionados.forEach(key => {
             if (!rasgosYaAñadidos.has(key)) {
                 const rasgo = RASGOS[key];
                 if (!rasgo) return;
 
-                // Marcamos este rasgo como añadido
                 rasgosYaAñadidos.add(key);
 
                 const bloque = document.createElement("div");
@@ -328,30 +320,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 ${rasgo.prerrequisitos ? `<p><em>Prerrequisitos:</em> ${rasgo.prerrequisitos}</p>` : ""}
                 <p>${rasgo.descripcion.replace(/\n/g, "<br>")}</p>
             `;
-
-                // Opciones como checkboxes
-                if (Array.isArray(rasgo.opciones)) {
-                    const lista = document.createElement("div");
-                    lista.innerHTML = "<em>Opciones:</em><br>";
-                    rasgo.opciones.forEach((op, index) => {
-                        const id = `checkbox-${key}-${index}`;
-                        const checkbox = document.createElement("input");
-                        checkbox.type = "checkbox";
-                        checkbox.id = id;
-                        checkbox.checked = op.activo || false;
-                        checkbox.addEventListener("change", (e) => {
-                            op.activo = e.target.checked;
-                            console.log(`Opción ${op.nombre} de ${rasgo.nombre} activada:`, op.activo);
-                        });
-                        const label = document.createElement("label");
-                        label.htmlFor = id;
-                        label.textContent = `${op.nombre}${op.costo ? ` (${op.costo})` : ""}`;
-                        lista.appendChild(checkbox);
-                        lista.appendChild(label);
-                        lista.appendChild(document.createElement("br"));
-                    });
-                    bloque.appendChild(lista);
-                }
 
                 contenedor.appendChild(bloque);
             }
@@ -426,7 +394,6 @@ document.addEventListener("DOMContentLoaded", () => {
         actualizarContador();
         actualizarSinergias();
     });
-
 
     /* =============================== INIT ================================ */
     document.querySelectorAll(".objeto").forEach(inicializarFila);
