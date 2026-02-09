@@ -28,6 +28,13 @@
         opciones: null,
         usos: "3 cargas/d3 Amanecer"
     },
+    gatillo_fragil: {
+        nombre: "Gatillo Frágil",
+        prerrequisitos: null,
+        descripcion: "Cuando realizas una Tirada de Iniciativa le añades un bonificador de +10",
+        opciones: null,
+        usos: "1 carga/Amanecer"
+    },
     talento_de_liebre: {
         nombre: "Talento de Liebre",
         prerrequisitos: null,
@@ -63,6 +70,20 @@
         opciones: null,
         usos: "3 cargas/d3 Amanecer"
     },
+    visor: {
+        nombre: "Visor",
+        prerrequisitos: null,
+        descripcion: "Al portar este objeto, las Tiradas de Ataque con arma a distancia aumentan en +1 por cada 10 pies que estés de la criatura.\nEste efecto aplica siempre que no tengas Desventaja en la Tirada de Ataque",
+        opciones: null,
+        usos: null
+    },
+    disparo_rafaga: {
+        nombre: "Disparo en Ráfaga",
+        prerrequisitos: null,
+        descripcion: "Cuando realizas una Tirada de Ataque a Distancia con este objeto, si aciertas un golpe, el resto de ataques en ese mismo turno se realizan con Ventaja",
+        opciones: null,
+        usos: null
+    },
     // Objetos Comunes
     magia_prestada: {
         nombre: "Magia Prestada",
@@ -71,7 +92,6 @@
         opciones: null,
         usos: null
     },
-
     trazado_temporal: {
         nombre: "Trazado temporal",
         prerrequisitos: null,
@@ -79,7 +99,6 @@
         opciones: null,
         usos: "3 cargas/Amanecer"
     },
-
     foco_arcano: {
         nombre: "Foco Arcano",
         prerrequisitos: null,
@@ -87,7 +106,6 @@
         opciones: null,
         usos: null
     },
-
     frase_almacenada: {
         nombre: "Frase Almacenada",
         prerrequisitos: null,
@@ -95,7 +113,6 @@
         opciones: null,
         usos: null
     },
-
     bendita_suerte: {
         nombre: "Bendita Suerte",
         prerrequisitos: null,
@@ -103,7 +120,6 @@
         opciones: null,
         usos: null
     },
-
     protesis: {
         nombre: "Protesis",
         prerrequisitos: null,
@@ -322,27 +338,6 @@
         opciones: null,
         usos: null
     },
-    marea: {
-        nombre: "Marea",
-        prerrequisitos: null,
-        descripcion: "Si una creatura a 30 pies de ti (Incluyéndote) realiza una Tirada de Salvación, como Reacción puedes gasta una carga para agregarle un bonificador o penalizador igual a un d4.",
-        opciones: null,
-        usos: "2 carga/Amanecer"
-    },
-    dominio_acuatico: {
-        nombre: "Dominio Acuático",
-        prerrequisitos: "Agregar el penalizador de Marea 10 veces",
-        descripcion: "Puedes usar Dominar bestia (CD 15) para bestias con natación innata",
-        opciones: null,
-        usos: null
-    },
-    respiracion_adaptativa: {
-        nombre: "Respiración adaptativa",
-        prerrequisitos: "Agregar el bonificador de Marea 10 veces",
-        descripcion: "Puedes respirar en cualquier entorno y tienes Ventaja en las Tiradas de Salvación contra gases, venenos inhalados y armas de aliento de algunos Dragones",
-        opciones: null,
-        usos: null
-    },
     recarga: {
         nombre: "Recarga",
         prerrequisitos: "Usar marea 20 veces",
@@ -389,9 +384,16 @@
     proteccion: {
         nombre: "Protección",
         prerrequisitos: null,
-        descripcion: "Como reacción, puedes dirigir ataaque a una creatura a 5p a ti",
+        descripcion: "Como reacción, puedes dirigir ataque a una creatura a 5 pies a ti",
         opciones: null,
         usos: null
+    },
+    repulsion: {
+        nombre: "Repulsión",
+        prerrequisitos: null,
+        descripcion: "Como reacción, cuando una tirada de ataque cuerpo a cuerpo falla contra ti, empujas a la creatura atacante 10 pies en dirección contraria",
+        opciones: null,
+        usos: "3 cargas/d3 Amanecer"
     },
     resistencia_contra_proyectiles: {
         nombre: "Resistencia contra proyectiles",
@@ -767,6 +769,13 @@
         opciones: null,
         usos: null
     },
+    versatil: {
+        nombre: "Versátil+",
+        prerrequisitos: null,
+        descripcion: "Tus tiradas de daño con armas Versátil infligen un tipo de dado de daño más alto (d4->d6->d8->d10->d12)",
+        opciones: null,
+        usos: null
+    },
     matagigantes: {
         nombre: "Matagigantes",
         prerrequisitos: null,
@@ -774,12 +783,109 @@
         opciones: null,
         usos: null
     },
+    // Arcano
     resistencia_magia: {
         nombre: "Resistencia Mágica+",
         prerrequisitos: null,
-        descripcion: "Resistencia en las Tiradas de Salvación de Hechizo y otros efectos mágicos. Además de que la Tirada de Ataque de HEchizos contra ti son con Desventaja",
+        descripcion: "Resistencia en las Tiradas de Salvación de Hechizo y otros efectos mágicos. Además de que la Tirada de Ataque de Hechizos contra ti son con Desventaja",
         opciones: null,
         usos: null
+    },
+    armadura_mago: {
+        nombre: "Armadura de Mago",
+        prerrequisitos: null,
+        descripcion: "Tu CA al usar este objeto es 13 + Modificador de Destreza",
+        opciones: null,
+        usos: null
+    },
+    conocimiento_arcano: {
+        nombre: "Conocimiento Arcano",
+        prerrequisitos: null,
+        descripcion: "Tu CA al usar este objeto es 13 + Modificador de Destreza",
+        opciones: null,
+        usos: null
+    },
+    aprendizaje_heredado: {
+        nombre: "Aprendizaje heredado",
+        prerrequisitos: null,
+        descripcion: "Aprendes un truco y obtienes una lista de conjuros ampliados que siempre están preparados. Los modificadores que usa son los de la ranura de hechizo que gastas",
+        opciones: [
+            {
+                id: "fuego",
+                nombre: "Fuego\n \nTruco: Descarga de Fuego\nConjuros: Manos Ardientes",
+                costo: null,
+                activo: false
+            },
+            {
+                id: "relampago",
+                nombre: "Relámpago\n \nTruco: Señuelo relámpago\nConjuros: Rayo de Bruja",
+                costo: null,
+                activo: false
+            },
+            {
+                id: "trueno",
+                nombre: "Trueno\n \nTruco: Tronido\nConjuros: Onda Atronadora",
+                costo: null,
+                activo: false
+            },
+            {
+                id: "frio",
+                nombre: "Frío\n \nTruco: Congelación\nConjuros: Cuchillo de Hielo",
+                costo: null,
+                activo: false
+            },
+            {
+                id: "veneno",
+                nombre: "Veneno\n \nTruco: Spray venenoso\nConjuros: Rayo de Enfermedad",
+                costo: null,
+                activo: false
+            },
+            {
+                id: "acido",
+                nombre: "Acido\n \nTruco: Salpicadura de Ácido\nConjuros: Mezcla Cáustica de Tasha",
+                costo: null,
+                activo: false
+            }
+        ],
+        usos: "1 carga/Amanecer"
+    },
+    conjuro_almacenado: {
+        nombre: "Conjuro Almacenado",
+        prerrequisitos: null,
+        descripcion: "Un objeto con un Conjuro innato, en caso de tener CD es 10+Competencia y su Tirada de Ataque de Hechizo es  2+Competencia.\n \nSi el conjuro requiere Concentración normalmente, ahora dura su máxima duración o su límite condicional",
+        opciones: [
+            {
+                id: "vinculo_tierra",
+                nombre: "Vinculo Tierra (100p)",
+                costo: null,
+                activo: false
+            },
+            {
+                id: "forma_gaseosa",
+                nombre: "Forma Gaseosa (Propio)",
+                costo: null,
+                activo: false
+            },
+            {
+                id: "paso_brumoso",
+                nombre: "Paso Brumoso (Propio)",
+                costo: null,
+                activo: false
+            },
+            {
+                id: "circulo_teletrasportacion",
+                nombre: "Circulo de teletrasporatación (Centrado sobre ti mismo)",
+                costo: null,
+                activo: false
+            },
+            {
+                id: "rafaga_de_viento",
+                nombre: "Ráfaga de Viento (Propio)",
+                costo: null,
+                activo: false
+            }
+        ],
+        usos: "1 Carga cada Conjuro/Amanecer"
     },
     lenguaje_prestado: {
         nombre: "Lenguaje Prestado",
@@ -788,6 +894,64 @@
         opciones: null,
         usos: null
     },
+    // Orbes
+    evocacion_imprudente: {
+        nombre: "Evocación Imprudente",
+        prerrequisitos: null,
+        descripcion: "Si se lanza un Conjuro de Evocación, puedes cubrir una cantidad de Criaturas igual a tu Competencia para que no pueda recibir ningún tipo de daño del conjuro lanzado",
+        opciones: null,
+        usos: "2 cargas/Amanecer"
+    },
+    onda_de_abjuracion: {
+        nombre: "Onda de Adjuración",
+        prerrequisitos: null,
+        descripcion: "Si se lanza un Conjuro de Abjuración, la criatura afectada emite una onda de choque, cualquier criatura a elección al rededor del objetivo recibe un d4 de Fuerza",
+        opciones: null,
+        usos: null
+    },
+    alma_curativa: {
+        nombre: "Alma Curativa",
+        prerrequisitos: null,
+        descripcion: "Si restauras puntos de golpe a una creatura aliada usando un conjuro, la creatura la empezará a seguir un espíritu curativo, que al final del siguiente turno de la creatura restaura la misma cantidad de puntos y desaparece",
+        opciones: null,
+        usos: "2 cargas/Amanecer"
+    },
+    combate_en_grupo: {
+        nombre: "Combate en Grupo",
+        prerrequisitos: null,
+        descripcion: "Tus Tiradas de Ataque de Hechizo que requieren al menos un Espacio de Conjuro, y tiene una invocación tuya a 5 pies de la creatura objetivo, son con Ventaja.",
+        opciones: null,
+        usos: null
+    },
+    vision_robada: {
+        nombre: "Visión Robada",
+        prerrequisitos: null,
+        descripcion: "Cuando una creatura es golpeada por un Hechizo que requiera al menos un Espacio de Conjuro lanzado por ti, durante el siguiente minuto como reacción, puedes ver a través de sus ojos",
+        opciones: null,
+        usos: "2 cargas/Amanecer"
+    },
+    ilusion_superior: {
+        nombre: "Ilusión Superior",
+        prerrequisitos: null,
+        descripcion: "Tus creaciones realizadas por Conjuros de Ilusión son altamente realistas, las tiradas de Percepción para identificarlas se hacen con Desventajas",
+        opciones: null,
+        usos: null
+    },
+    canje_trasmutador: {
+        nombre: "Canje Trasmutador",
+        prerrequisitos: null,
+        descripcion: "Cuando lanzas un Conjuro con una Ranura de Hechizo de nivel 2 o Superior, puedes gastar una carga para que cueste un Espacio de Conjuro menor",
+        opciones: null,
+        usos: "2 cargas/Amanecer"
+    },
+    control_de_movimiento: {
+        nombre: "Control de Movimiento",
+        prerrequisitos: null,
+        descripcion: "Cuando pierdas la Concentración en un Conjuro, puedes moverte a un Espacio desocupado que puedas ver a 30 pies",
+        opciones: null,
+        usos: null
+    },
+    // Dragones
     aguanta_dragones: {
         nombre: "Aguanta Dragones",
         prerrequisitos: null,
@@ -829,7 +993,7 @@
                 nombre: "Verde (Veneno)",
                 costo: null,
                 activo: false
-            },
+            }
         ],
         usos: null
     },
@@ -840,14 +1004,87 @@
         opciones: null,
         usos: "1 carga/Amanecer"
     },
-    // Arácnido bajo de Velo de Sigilo
-    almcenamiento_arcano: {
-        nombre: "Almacenamiento Arcano",
+    // Druídicos
+    venenoso: {
+        nombre: "Venenoso",
         prerrequisitos: null,
-        descripcion: "Este objeto contiene 7 hechizos. Aprendes 3 trucos. Además, adicionalmente puedes gastar una carga, no recuperable, para lanzar un hechizo sin componentes V, S o M",
+        descripcion: "Cuando aciertas un Golpe con esta arma, la envenenas, dura hasta el final de su siguiente turno",
         opciones: null,
-        usos: "3 cargas"
+        usos: "2 carga/Amanecer"
     },
+    corrosivo: {
+        nombre: "Corrosivo",
+        prerrequisitos: "Envenenar 15 criaturas hostiles",
+        descripcion: "Tu Daño de Veneno con este objeto es Especial, este especial Veneno supera Resistencias y una creatura Inmune, recibe daño como si fuera Resistente",
+        opciones: null,
+        usos: null
+    },
+    marea: {
+        nombre: "Marea",
+        prerrequisitos: null,
+        descripcion: "Si una creatura a 30 pies de ti (Incluyéndote) realiza una Tirada de Salvación, como Reacción puedes gasta una carga para agregarle un bonificador o penalizador igual a un d4.",
+        opciones: null,
+        usos: "2 carga/Amanecer"
+    },
+    dominio_acuatico: {
+        nombre: "Dominio Acuático",
+        prerrequisitos: "Agregar el penalizador de Marea 10 veces",
+        descripcion: "Puedes usar Dominar bestia (CD 15) para bestias con natación innata",
+        opciones: null,
+        usos: null
+    },
+    respiracion_adaptativa: {
+        nombre: "Respiración adaptativa",
+        prerrequisitos: "Agregar el bonificador de Marea 10 veces",
+        descripcion: "Puedes respirar en cualquier entorno y tienes Ventaja en las Tiradas de Salvación contra gases, venenos inhalados y armas de aliento de algunos Dragones",
+        opciones: null,
+        usos: null
+    },
+    elevacion_mar: {
+        nombre: "Elevación del mar",
+        prerrequisitos: "realizar 15 Tiradas de Salvación exitosos",
+        descripcion: "Marea incrementa su dado a un d6. Además, puedes añadirlo a Pruebas de Habilidad, Tiradas de Ataque y Daño.",
+        opciones: null,
+        usos: null
+    },
+    quemadura: {
+        nombre: "Quemadura",
+        prerrequisitos: null,
+        descripcion: "Tras acertar tu primera Tirada de Ataque cuerpo a cuerpo contra una criatura, esta queda marcada hasta el inicio de su siguiente ronda, donde todo el daño por Fuego recibido por esta ronda se repite",
+        opciones: null,
+        usos: "2 carga/Amanecer"
+    },
+    estallido: {
+        nombre: "Estallido",
+        prerrequisitos: "Realizar 20 de daño por Fuego con este objeto",
+        descripcion: "Cuando infliges daño por Fuego con este objeto, las brasas queman el mismo daño por fuego a toda creatura de tu elección a 5p del objetivo",
+        opciones: null,
+        usos: null
+    },
+    descanso_rapido: {
+        nombre: "Descanso Relajante",
+        prerrequisitos: null,
+        descripcion: "Requieres solo de la mitad de tiempo para recuperar los beneficios de un Descanso Largo. Y no pueden tomarte por sorpresa mientras descansas",
+        opciones: null,
+        usos: "1 carga/d3 Amanecer(es)"
+    },
+    dulce_sueño: {
+        nombre: "Descanso Relajante",
+        prerrequisitos: "Obten 100 puntos de Descansos. Los Descansos cortos dan 1 punto, los largos dan 10 puntos",
+        descripcion: "Si tomas un día de no sobre esfuerzo (Lo establece el GM), Tras el Descanso Largo obtienes Inspiración [No acumulable]",
+        opciones: null,
+        usos: "1 carga/d3 Amanecer(es)"
+    },
+    // Bendito
+    // Maldito
+    vinculo: {
+        nombre: "Vínculo",
+        prerrequisitos: null,
+        descripcion: "Tras realizar un Descanso Corto, puedes vincular un arma a este objeto. Puedes guardar en un espacio mágico el arma vinculada e invocarla en tu mano como Acción adicional\n \nLos ataques de esta arma vinculada se vuelven mágicos y obtienes un bonificador de +1 a la Tirada de Ataque y al daño",
+        opciones: null,
+        usos: null
+    },
+    // Arácnido bajo de Velo de Sigilo
     regeneracion: {
         nombre: "Regeneración",
         prerrequisitos: null,
