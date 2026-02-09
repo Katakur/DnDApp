@@ -845,6 +845,18 @@
                 nombre: "Acido\n \nTruco: Salpicadura de Ácido\nConjuros: Mezcla Cáustica de Tasha",
                 costo: null,
                 activo: false
+            },
+            {
+                id: "radiante",
+                nombre: "Radiante\n \nTruco: Llama Sagrada\nConjuros: Rayo Guía",
+                costo: null,
+                activo: false
+            },
+            {
+                id: "necrotico",
+                nombre: "Necrótico\n \nTruco: Toque de la muerte\nConjuros: Inflingir Herida",
+                costo: null,
+                activo: false
             }
         ],
         usos: "1 carga/Amanecer"
@@ -1061,27 +1073,117 @@
         opciones: null,
         usos: null
     },
+    autocuracion: {
+        nombre: "Autocuración",
+        prerrequisitos: "Realiza 15 Tiradas de Salvación exitosa",
+        descripcion: "Como acción, puedes recuperar magicamente 2d8+2 puntos de golpe",
+        opciones: null,
+        usos: null
+    },
+    conjuro_mutado: {
+        nombre: "Conjuro Mutado",
+        prerrequisitos: "Usa este Foco Arcano para lanzar 15 Conjuros",
+        descripcion: "Al realizar un Conjuro de daño por Fuego, Frío, Relámpago, Trueno o Ácido. Puedes opcionalmente volverlo más fuerte de lo normal para superar resistencias",
+        opciones: null,
+        usos: "3 cargas/d3 Amanecer"
+    },
     descanso_rapido: {
         nombre: "Descanso Relajante",
         prerrequisitos: null,
         descripcion: "Requieres solo de la mitad de tiempo para recuperar los beneficios de un Descanso Largo. Y no pueden tomarte por sorpresa mientras descansas",
         opciones: null,
-        usos: "1 carga/d3 Amanecer(es)"
+        usos: "1 carga/en d3 Amanecer(es)"
     },
     dulce_sueño: {
         nombre: "Descanso Relajante",
         prerrequisitos: "Obten 100 puntos de Descansos. Los Descansos cortos dan 1 punto, los largos dan 10 puntos",
         descripcion: "Si tomas un día de no sobre esfuerzo (Lo establece el GM), Tras el Descanso Largo obtienes Inspiración [No acumulable]",
         opciones: null,
-        usos: "1 carga/d3 Amanecer(es)"
+        usos: "1 carga/en d3 Amanecer(es)"
+    },
+    drenaje: {
+        nombre: "Drenaje",
+        prerrequisitos: "Usa el Conjuro Absorber elemento 15 veces",
+        descripcion: "Cuando realizas el daño del Conjuro Absorber Elemento, puedes recuperar puntos de golpe igual al daño infligido",
+        opciones: null,
+        usos: null
     },
     // Bendito
+    luz_juicio: {
+        nombre: "Luz de Juicio",
+        prerrequisitos: null,
+        descripcion: "Como acción adicional en tu turno mientras empuñas el arma, marcas a una creatura que puedas ver a 60 pies, el primer golpe que recibe de ti en cada turno con el Arma provoca d6 de daño extra Radiante. Este efecto dura hasta que tu o la creatura marcada quede a 0 puntos de golpe, o que pase 1 hora",
+        opciones: null,
+        usos: "2 carga/Amanecer"
+    },
+    castigo_cielo: {
+        nombre: "Castigo del Cielo",
+        prerrequisitos: null,
+        descripcion: "Como Acción, con esta arma puedes realizar un castigo sobre toda creatura a 15 pies (Hasta un máximo igual a tu Competencia). Toda creatura que recibe el castigo debe realizar una Tirada de Salvación de Destreza que usa tu Modificador de Sabiduría para establecer el CD de Salvación. Si fallan, las creaturas reciben d8 Radiante.\n \nEn niveles superiores: El daño de los látigos de luz aumenta en 1d8 al alcanzar nivel 5(2d8), el nivel 11(3d8) y el nivel 17(4d8) ",
+        opciones: null,
+        usos: "2 carga/Amanecer"
+    },
+    estoque_radiante: {
+        nombre: "Estoque Radiante",
+        prerrequisitos: null,
+        descripcion: "Tras realizar la Acción Atacar, puedes como Acción adicional realizar un ataque especial que usa tu Modificador de Carisma para la Tirada de Ataque. Si Acierta, la creatura y tu se mueven 5 pies en dirección al ataque y realiza d4 Radiante. \n \nEn niveles superiores: El daño de la estocada aumenta en 1d4 al alcanzar el nivel 5(2d4), el nivel 11(3d4) y el nivel 17(4d6) ",
+        opciones: null,
+        usos: null
+    },
+    lluvia_flechas: {
+        nombre: "Lluvia de Flechas",
+        prerrequisitos: null,
+        descripcion: "Como acción, en un turno mientras empuñas el arma, cuando realizas una Tirada de Ataque con esta arma, la Tirada de Ataque también enfrenta el CA de los enemigos adyacente a 5 pies del objetivo y si lo supera, igual reciben el daño del arma",
+        opciones: null,
+        usos: "2 carga/Amanecer"
+    },
+    vinculo_flecha: {
+        nombre: "Vinculo de Flecha",
+        prerrequisitos: null,
+        descripcion: "Puedes vincular 20 flechas. Luego en una acción, puedes atraer todas las flechas vinculadas a ti sin importar lo lejos que estén (en 1000 pies)",
+        opciones: null,
+        usos: null
+    },
     // Maldito
     vinculo: {
         nombre: "Vínculo",
         prerrequisitos: null,
-        descripcion: "Tras realizar un Descanso Corto, puedes vincular un arma a este objeto. Puedes guardar en un espacio mágico el arma vinculada e invocarla en tu mano como Acción adicional\n \nLos ataques de esta arma vinculada se vuelven mágicos y obtienes un bonificador de +1 a la Tirada de Ataque y al daño",
+        descripcion: "Tras realizar un Descanso Corto, puedes vincular un arma a este objeto. Puedes guardar en un espacio mágico el arma vinculada e invocarla en tu mano como Acción adicional",
         opciones: null,
+        usos: null
+    },
+    precision_maldita: {
+        nombre: "Presición Maldita",
+        prerrequisitos: null,
+        descripcion: "Tus Tiradas de daño tienen un bonificador +2 al daño. Si en la Tirada de ataque sacas 1, el ataque se dirige instantáneamente a ti.",
+        opciones: null,
+        usos: null
+    },
+    cicatriz_sombra: {
+        nombre: "Cicatriz Sombra",
+        prerrequisitos: null,
+        descripcion: "Al realizar un crítico en la Tirada de Ataque Cuerpo a cuerpo, el daño obtiene 2d6 Necrótico extra y Tumba a la creatura",
+        opciones: null,
+        usos: null
+    },
+    invocacion_infernal: {
+        nombre: "Invocación Infernal",
+        prerrequisitos: null,
+        descripcion: "Envuelto en una energía oscura, dependiendo de la función especificado en el objeto gatilla una invocación infernal",
+        opciones: [
+            {
+                id: "Ataque",
+                nombre: "Tras acertar una Tirada de Ataque con esta arma se consumen una carga y a 5 pies del objetivo aparece un Sangrón (Otorgado por el GM)",
+                costo: "1 Carga",
+                activo: false
+            },
+            {
+                id: "Defensa",
+                nombre: "Tras bloquear una Tirada de Ataque con esta armadura se consumen 3 cargas y a 5 pies de ti aparece un Cóstragon (Otorgado por el GM)",
+                costo: "3 Cargas",
+                activo: false
+            }
+        ],
         usos: null
     },
     // Arácnido bajo de Velo de Sigilo
