@@ -179,13 +179,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function llenarSelectRasgos(select) {
         if (!window.RASGOS) return;
+
         select.innerHTML = `<option value="">-- Seleccionar Rasgo --</option>`;
-        for (const key in RASGOS) {
+
+        // Convertimos a array y ordenamos por nombre
+        const rasgosOrdenados = Object.entries(RASGOS)
+            .sort((a, b) => a[1].nombre.localeCompare(b[1].nombre, "es"));
+
+        // Creamos las opciones ya ordenadas
+        rasgosOrdenados.forEach(([key, rasgo]) => {
             const opt = document.createElement("option");
             opt.value = key;
-            opt.textContent = RASGOS[key].nombre;
+            opt.textContent = rasgo.nombre;
             select.appendChild(opt);
-        }
+        });
     }
 
     function inicializarFila(fila) {

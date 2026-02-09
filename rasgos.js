@@ -198,6 +198,50 @@
         ],
         usos: null
     },
+    refuerzo: {
+        nombre: "Refuerzo",
+        prerrequisitos: null,
+        descripcion: "Obtienes un bonificador a las Tiradas de Salvación especificado en el objeto",
+        opciones: [
+            {
+                id: "fuerza",
+                nombre: "Fuerza",
+                costo: null,
+                activo: false
+            },
+            {
+                id: "destreza",
+                nombre: "Destreza",
+                costo: null,
+                activo: false
+            },
+            {
+                id: "constitucion",
+                nombre: "Constitución",
+                costo: null,
+                activo: false
+            },
+            {
+                id: "inteligencia",
+                nombre: "Inteligencia",
+                costo: null,
+                activo: false
+            },
+            {
+                id: "sabiduria",
+                nombre: "Sabiduría",
+                costo: null,
+                activo: false
+            },
+            {
+                id: "carisma",
+                nombre: "Carisma",
+                costo: null,
+                activo: false
+            }
+        ],
+        usos: null
+    },
     errante: {
         nombre: "Errante",
         prerrequisitos: null,
@@ -528,11 +572,109 @@
         ],
         usos: null
     },
+    inmunidad_al_estado: {
+        nombre: "Inmunidad a un estado",
+        prerrequisitos: null,
+        descripcion: "Obtienes una inmunidad a un estado de la lista (Según el objeto, una lista d10 aleatorio o a elección)",
+        opciones: [
+            {
+                id: "asustado",
+                nombre: "Asustado",
+                costo: null,
+                activo: false
+            },
+            {
+                id: "agarrado",
+                nombre: "Agarrado",
+                costo: null,
+                activo: false
+            },
+            {
+                id: "apresado",
+                nombre: "Apresado",
+                costo: null,
+                activo: false
+            },
+            {
+                id: "encantado",
+                nombre: "Encantado",
+                costo: null,
+                activo: false
+            },
+            {
+                id: "derribado",
+                nombre: "Derribado",
+                costo: null,
+                activo: false
+            },
+            {
+                id: "ensordecido",
+                nombre: "Ensordecido",
+                costo: null,
+                activo: false
+            },
+            {
+                id: "cegado",
+                nombre: "Cegado",
+                costo: null,
+                activo: false
+            },
+            {
+                id: "envenenado",
+                nombre: "Envenenado",
+                costo: null,
+                activo: false
+            },
+            {
+                id: "petrificado",
+                nombre: "Petrificado",
+                costo: null,
+                activo: false
+            },
+            {
+                id: "paralizado",
+                nombre: "Paralizado",
+                costo: null,
+                activo: false
+            },
+            {
+                id: "dormido",
+                nombre: "Dormido",
+                costo: null,
+                activo: false
+            },
+            {
+                id: "agotado",
+                nombre: "Agotado",
+                costo: null,
+                activo: false
+            }
+        ],
+        usos: null
+    },
     resistencia_al_danno: {
         nombre: "Resistencia al Daño",
         prerrequisitos: null,
         descripcion: "Obtienes una resistencia a un tipo de daño de la lista (Según el objeto, una lista d10 aleatorio o a elección)",
         opciones: [
+            {
+                id: "contundente",
+                nombre: "Contundente",
+                costo: null,
+                activo: false
+            },
+            {
+                id: "perforante",
+                nombre: "Perforante",
+                costo: null,
+                activo: false
+            },
+            {
+                id: "cortante",
+                nombre: "Cortante",
+                costo: null,
+                activo: false
+            },
             {
                 id: "acido",
                 nombre: "Acido",
