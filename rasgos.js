@@ -89,7 +89,50 @@
         nombre: "Magia Prestada",
         prerrequisitos: null,
         descripcion: "Puedes lanzar cualquier truco de la clase de magia del objeto, pero antes de lanzar cualquier truco requiere que el portador realice una prueba de Inteligencia (Arcana).\n \nLa prueba es CD 10, si la supera, lanza el conjuro usando tus modificadores de inteligencia, en caso contrario, no surte efecto y pierde el tiempo requerido del truco. (Acción, acción adicional, etc)",
-        opciones: null,
+        opciones: [
+            {
+                id: "mago",
+                nombre: "Mago",
+                costo: null,
+                activo: false
+            },
+            {
+                id: "hechicero",
+                nombre: "Hechicero",
+                costo: null,
+                activo: false
+            },
+            {
+                id: "brujo",
+                nombre: "Brujo",
+                costo: null,
+                activo: false
+            },
+            {
+                id: "druida",
+                nombre: "Druida",
+                costo: null,
+                activo: false
+            },
+            {
+                id: "clerigo",
+                nombre: "Clérigo",
+                costo: null,
+                activo: false
+            },
+            {
+                id: "bardo",
+                nombre: "Bardo",
+                costo: null,
+                activo: false
+            },
+            {
+                id: "artificiero",
+                nombre: "Artificiero",
+                costo: null,
+                activo: false
+            }
+        ], 
         usos: null
     },
     trazado_temporal: {
@@ -169,6 +212,13 @@
         descripcion: "Mientras posees este objeto, obtienes los siguientes beneficios:\n \n-Resistencia al Veneno\n-Velocidad de Escalada igual al de caminata\n-Puedes moverte sobre superficie arriba, abajo y sobre superficie verticales o boca abajo en techos si tienes las manos libres\n-No puedes quedar atrapado en tela de araña y puedes moverte a través de ella como si fuera terreno difícil\n-Como acción, puedes lanzar Telaraña (CD 13). La telaraña creada de esta manera, ocupa el doble del espacio.",
         opciones: null,
         usos: "1 Telaraña+/Amanecer"
+    },
+    coraza_guerrera: {
+        nombre: "Coraza Guerrera",
+        prerrequisitos: "Realizar 15 Ataques sorpresa exitosos",
+        descripcion: "Cual hormiga que defiende tu templo que es tu cuerpo, obteniendo los siguientes beneficios.\n \n- Resistencia al Perforante, Cortante y Contundente.\n- Velocidad de Excavar igual a la mitad de tu caminata.\n- Explosión Defensiva: Cuando te consideres rodeado o busques producir un daño masivo, puedes como Acción, gastar una cantidad de dados de Golpe iguales a tu Competencia.Toda creatura a 5 pies de ti realiza una Tirada de Salvación de Destreza(CD 13) o recibe el daño igual a los dados de golpe gastados por ácido.Si la explosión es por sorpresa recibe el doble de daño.",
+        opciones: null,
+        usos: null
     },
     maxima_habilidad: {
         nombre: "Máxima Habilidad",
@@ -309,6 +359,13 @@
             }
         ],
         usos: "3 cargas/d3 Amanecer"
+    },
+    polimorfia_mejorada: {
+        nombre: "Polimorfia Mejorada",
+        prerrequisitos: "Usar Polimorfia sobre ti mismo 10 veces",
+        descripcion: "Esta versión de Polimorfia, mantienes tu Inteligencia, Sabiduría y Carisma. Puedes lanzar Conjuros en forma animal y obtienes resistencia a todo tipo de daño mientras tengas esta forma.",
+        opciones: null,
+        usos: null
     },
     desviar_misiles: {
         nombre: "Desviar Misiles",
@@ -895,7 +952,32 @@
                 nombre: "Ráfaga de Viento (Propio)",
                 costo: null,
                 activo: false
+            },
+            {
+                id: "reencarnar",
+                nombre: "Reencarnar (Propio Automático)",
+                costo: null,
+                activo: false
+            },
+            {
+                id: "revivificar",
+                nombre: "Revivificar (Toque)",
+                costo: null,
+                activo: false
+            },
+            {
+                id: "aura_vida",
+                nombre: "Aura de Vida (Propio)",
+                costo: null,
+                activo: false
+            },
+            {
+                id: "aura_pureza",
+                nombre: "Aura de Pureza (Propio)",
+                costo: null,
+                activo: false
             }
+
         ],
         usos: "1 Carga cada Conjuro/Amanecer"
     },
@@ -903,7 +985,38 @@
         nombre: "Lenguaje Prestado",
         prerrequisitos: null,
         descripcion: "Obtienes competencia a un tipo de lenguaje otorgado por el objeto",
-        opciones: null,
+        opciones: [
+            {
+                id: "primordial",
+                nombre: "Primordial",
+                costo: null,
+                activo: false
+            },
+            {
+                id: "silvano",
+                nombre: "Silvano",
+                costo: null,
+                activo: false
+            },
+            {
+                id: "draconido",
+                nombre: "Dracónido",
+                costo: null,
+                activo: false
+            },
+            {
+                id: "abisal",
+                nombre: "Abisal",
+                costo: null,
+                activo: false
+            },
+            {
+                id: "celestial",
+                nombre: "Celestial",
+                costo: null,
+                activo: false
+            }
+        ],
         usos: null
     },
     // Orbes
@@ -1086,6 +1199,32 @@
         descripcion: "Al realizar un Conjuro de daño por Fuego, Frío, Relámpago, Trueno o Ácido. Puedes opcionalmente volverlo más fuerte de lo normal para superar resistencias",
         opciones: null,
         usos: "3 cargas/d3 Amanecer"
+    },
+    invocacion_elemental: {
+        nombre: "Invocación Elemental",
+        prerrequisitos: null,
+        descripcion: "Como acción, puedes gastar cargas para invocar Mefits (1 carga) o Elemental (3 cargas) del tipo determinado por el Objeto, esta invocación dura por 1 minuto.",
+        opciones: [
+            {
+                id: "agua",
+                nombre: "Agua: Mephit de Hielo y Elemental de Agua",
+                costo: null,
+                activo: false
+            },
+            {
+                id: "fuego",
+                nombre: "Fuego: Mephit de Fuego y Elemental de Fuego",
+                costo: null,
+                activo: false
+            },
+            {
+                id: "tierra",
+                nombre: "Tierra: Mephit de Polvo y Elemental de Tierra",
+                costo: null,
+                activo: false
+            }
+        ],
+        usos: null
     },
     descanso_rapido: {
         nombre: "Descanso Relajante",
