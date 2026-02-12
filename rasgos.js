@@ -22,7 +22,7 @@
         usos: null
     },
     flautista: {
-        nombre: "Resguardo",
+        nombre: "Flautista",
         prerrequisitos: null,
         descripcion: "Las ratas de ningún tipo de atacarán a menos que tu las ataques a ellas.\n \nComo acción, puedes invocar un enjambre de ratas por cada carga gastada, mantienes el ritmo tocando como una Concentración de un Hechizo\n \nSi pierdes la concentración, las ratas se vuelven neutrales y pueden decidir si atacar o retirarse",
         opciones: null,
@@ -588,7 +588,7 @@
     ardiente: {
         nombre: "Ardiente",
         prerrequisitos: null,
-        descripcion: "Como acción adicional, prendes el arma en fuego, brilla 40 pies de luz brillante y 40 pies adicionales de luz suave. Mientras esté en llamas, inflige 2d6 de Fuego adicional en cada golpe, el fuego dura hasta que sueles el arma, uses otra acción adicional para apagarla o envaines el arma.",
+        descripcion: "Como acción adicional, prendes el arma en fuego, brilla 40 pies de luz brillante y 40 pies adicionales de luz suave. Mientras esté en llamas, inflige 2d6 de Fuego adicional en cada golpe, el fuego dura hasta que sueltes el arma, uses otra acción adicional para apagarla o envaines el arma.",
         opciones: null,
         usos: null
     },
@@ -854,7 +854,8 @@
         descripcion: "Tu CA al usar este objeto es 13 + Modificador de Destreza",
         opciones: null,
         usos: null
-    },
+    },  
+    // REVISAR CUAL ES CONOCIMIENTO ARCANO
     conocimiento_arcano: {
         nombre: "Conocimiento Arcano",
         prerrequisitos: null,
@@ -1244,6 +1245,20 @@
         nombre: "Drenaje",
         prerrequisitos: "Usa el Conjuro Absorber elemento 15 veces",
         descripcion: "Cuando realizas el daño del Conjuro Absorber Elemento, puedes recuperar puntos de golpe igual al daño infligido",
+        opciones: null,
+        usos: null
+    },
+    paz_iluminada: {
+        nombre: "Paz iluminada",
+        prerrequisitos: null,
+        descripcion: "Como acción, restableces una condición sobre ti mismo",
+        opciones: null,
+        usos: null
+    },
+    pureza: {
+        nombre: "Pureza",
+        prerrequisitos: "Purificar 15 condiciones sobre ti mismo",
+        descripcion: "Puedes usar Paz iluminada como Reacción",
         opciones: null,
         usos: null
     },
