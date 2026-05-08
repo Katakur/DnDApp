@@ -406,4 +406,208 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".objeto").forEach(inicializarFila);
     actualizarContador();
     actualizarSinergias();
-});
+
+    /* =============================== EXPORTAR A TXT ================================ */
+    const btnDescargarTxt = document.getElementById("btnDescargarTxt");
+
+    if (btnDescargarTxt) {
+        btnDescargarTxt.addEventListener("click", () => {
+            // 1. Obtener datos del jugador
+            const nombreJugador = document.getElementById("nombreJugador").value.trim() || "Desconocido";
+            const nombrePersonaje = document.getElementById("nombrePersonaje").value.trim() || "Sin_Nombre";
+
+            // 2. Empezar a crear el contenido del texto
+            let contenidoTxt = `=================================\n`;
+            contenidoTxt += `      INVENTARIO DE CAMPAÑA      \n`;
+            contenidoTxt += `=================================\n\n`;
+            contenidoTxt += `Jugador:   ${nombreJugador}\n`;
+            contenidoTxt += `Personaje: ${nombrePersonaje}\n\n`;
+            contenidoTxt += `---------------------------------\n`;
+            contenidoTxt += `            OBJETOS              \n`;
+            contenidoTxt += `---------------------------------\n`;
+
+            // 3. Recorrer cada fila de la tabla de objetos
+            const filas = tbody.querySelectorAll(".objeto");
+            filas.forEach((fila, index) => {
+                const nombreObj = fila.querySelector(".obj-nombre").value.trim() || "Objeto sin nombre";
+                
+                const selectOrigen = fila.querySelector(".obj-origen");
+                const origen = selectOrigen.options[selectOrigen.selectedIndex]?.text || "Ninguno";
+
+                const selectCat1 = fila.querySelector(".obj-cat1");
+                const cat1 = selectCat1.options[selectCat1.selectedIndex]?.text || "Ninguna";
+
+                const selectCat2 = fila.querySelector(".obj-cat2");
+                const cat2 = selectCat2.options[selectCat2.selectedIndex]?.text || "Ninguna";
+
+                // Capturar todos los rasgos de este objeto
+                const selectsRasgos = fila.querySelectorAll(".obj-rasgos");
+                const rasgos = [];
+                selectsRasgos.forEach(select => {
+                    if (select.value) {
+                        rasgos.push(select.options[select.selectedIndex].text);
+                    }
+                });
+                const rasgosTexto = rasgos.length > 0 ? rasgos.join(", ") : "Ninguno";
+
+                // Agregar los datos del objeto al texto final
+                contenidoTxt += `\n[ Objeto ${index + 1} ]: ${nombreObj}\n`;
+                contenidoTxt += `  - Origen:      ${origen}\n`;
+                contenidoTxt += `  - Categoría 1: ${cat1}\n`;
+                contenidoTxt += `  - Categoría 2: ${cat2}\n`;
+                contenidoTxt += `  - Rasgos:      ${rasgosTexto}\n`;
+            });
+
+            // 4. Crear el archivo (Blob) y forzar la descarga
+            const blob = new Blob([contenidoTxt], { type: "text/plain;charset=utf-8" });
+            const url = URL.createObjectURL(blob);
+            
+            const enlaceDescarga = document.createElement("a");
+            enlaceDescarga.href = url;
+            // El nombre del archivo se adaptará al nombre del personaje
+            enlaceDescarga.download = `Inventario_${nombrePersonaje.replace(/\s+/g, '_')}.txt`;
+            
+            document.body.appendChild(enlaceDescarga);
+            enlaceDescarga.click(); // Simulamos un clic
+            
+            // Limpieza
+            document.body.removeChild(enlaceDescarga);
+            URL.revokeObjectURL(url);
+        });
+    }
+
+    /* =============================== IMPORTAR DESDE TXT ================================ */
+    const inputCargarTxt = document.getElementById("inputCargarTxt");
+
+    if (inputCargarTxt) {
+        inputCargarTxt.addEventListener("change", (evento) => {
+            const archivo = evento.target.files[0];
+            if (!archivo) return;
+
+            const lector = new FileReader();
+            lector.onload = (e) => {
+                const contenido = e.target.result;
+                procesarArchivoTxt(contenido);
+            };
+            lector.readAsText(archivo);
+            
+            // Limpiamos el input para permitir cargar el mismo archivo dos veces seguidas si el usuario quiere
+            inputCargarTxt.value = ""; 
+        });
+    }
+
+    // Función auxiliar para seleccionar opciones por su Texto visible y no por su 'value' oculto
+    function seleccionarOpcionPorTexto(selectElement, textoDeseado) {
+        if (!textoDeseado || textoDeseado === "Ninguno" || textoDeseado === "Ninguna") {
+            selectElement.value = "";
+            selectElement.dispatchEvent(new Event("change"));
+            return;
+        }
+
+        for (let i = 0; i < selectElement.options.length; i++) {
+            if (selectElement.options[i].text === textoDeseado) {
+                selectElement.selectedIndex = i;
+                selectElement.dispatchEvent(new Event("change")); // Forzamos el evento para actualizar Sinergias
+                return;
+            }
+        }
+    }
+
+    function procesarArchivoTxt(texto) {
+        const lineas = texto.split('\n');
+        
+        let jugador = "Desconocido";
+        let personaje = "Sin_Nombre";
+        const objetosData = [];
+        let objetoActual = null;
+
+        // 1. Extraer los datos leyendo el .txt línea por línea
+        lineas.forEach(linea => {
+            if (linea.startsWith("Jugador:   ")) jugador = linea.replace("Jugador:   ", "").trim();
+            if (linea.startsWith("Personaje: ")) personaje = linea.replace("Personaje: ", "").trim();
+
+            const matchObjeto = linea.match(/\[ Objeto \d+ \]: (.*)/);
+            if (matchObjeto) {
+                objetoActual = { nombre: matchObjeto[1].trim(), rasgos: [] };
+                objetosData.push(objetoActual);
+            } else if (objetoActual) {
+                if (linea.startsWith("  - Origen:      ")) objetoActual.origen = linea.replace("  - Origen:      ", "").trim();
+                if (linea.startsWith("  - Categoría 1: ")) objetoActual.cat1 = linea.replace("  - Categoría 1: ", "").trim();
+                if (linea.startsWith("  - Categoría 2: ")) objetoActual.cat2 = linea.replace("  - Categoría 2: ", "").trim();
+                if (linea.startsWith("  - Rasgos:      ")) {
+                    const rasgosStr = linea.replace("  - Rasgos:      ", "").trim();
+                    if (rasgosStr !== "Ninguno") {
+                        objetoActual.rasgos = rasgosStr.split(",").map(r => r.trim());
+                    }
+                }
+            }
+        });
+
+        // 2. Restaurar Jugador y Personaje
+        document.getElementById("nombreJugador").value = (jugador === "Desconocido") ? "" : jugador;
+        document.getElementById("nombrePersonaje").value = (personaje === "Sin_Nombre") ? "" : personaje;
+
+        // 3. Restaurar Objetos en la interfaz
+        // Limpiamos la tabla dejando solo una fila
+        const filasActuales = tbody.querySelectorAll(".objeto");
+        for (let i = 1; i < filasActuales.length; i++) {
+            filasActuales[i].remove();
+        }
+        
+        // Vaciamos la primera fila por completo
+        const primeraFila = tbody.querySelector(".objeto");
+        primeraFila.querySelector(".obj-nombre").value = "";
+        primeraFila.querySelectorAll("select").forEach(s => { 
+            s.value = ""; 
+            s.dispatchEvent(new Event("change"));
+        });
+        
+        // Quitar todos los desplegables de Rasgos extra que se hayan sumado, excepto el primero
+        const selectsRasgosPrimera = primeraFila.querySelectorAll(".obj-rasgos");
+        for (let i = 1; i < selectsRasgosPrimera.length; i++) {
+            selectsRasgosPrimera[i].remove();
+        }
+
+        // Si el archivo no tenía objetos (raro, pero posible), terminamos aquí
+        if (objetosData.length === 0) {
+            actualizarContador();
+            actualizarSinergias();
+            return;
+        }
+
+        // 4. Crear tantas filas como objetos hay en el TXT (usando el botón oculto)
+        for (let i = 1; i < objetosData.length; i++) {
+            btnAgregar.click(); 
+        }
+
+        // 5. Llenar cada fila con los datos extraídos
+        const nuevasFilas = tbody.querySelectorAll(".objeto");
+        objetosData.forEach((objData, index) => {
+            const fila = nuevasFilas[index];
+
+            fila.querySelector(".obj-nombre").value = (objData.nombre === "Objeto sin nombre") ? "" : objData.nombre;
+            
+            seleccionarOpcionPorTexto(fila.querySelector(".obj-origen"), objData.origen);
+            seleccionarOpcionPorTexto(fila.querySelector(".obj-cat1"), objData.cat1);
+            seleccionarOpcionPorTexto(fila.querySelector(".obj-cat2"), objData.cat2);
+
+            // Cargar los rasgos y generar los desplegables extra si son necesarios
+            if (objData.rasgos && objData.rasgos.length > 0) {
+                const primerSelectRasgo = fila.querySelector(".obj-rasgos");
+                seleccionarOpcionPorTexto(primerSelectRasgo, objData.rasgos[0]);
+
+                const btnSumarRasgo = fila.querySelector(".btn-agregar-rasgo");
+                for (let i = 1; i < objData.rasgos.length; i++) {
+                    btnSumarRasgo.click(); // Esto crea un nuevo desplegable vacío automáticamente
+                    const todosLosSelects = fila.querySelectorAll(".obj-rasgos");
+                    const ultimoSelect = todosLosSelects[todosLosSelects.length - 1]; // Tomamos el que se acaba de crear
+                    seleccionarOpcionPorTexto(ultimoSelect, objData.rasgos[i]);
+                }
+            }
+        });
+
+        actualizarContador();
+        actualizarSinergias();
+        alert("¡Inventario cargado exitosamente! 🐉");
+    }
+}); 
