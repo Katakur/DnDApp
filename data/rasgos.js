@@ -1,4 +1,6 @@
-﻿window.RASGOS = {
+﻿/* =============================== RASGOS ================================ */
+
+export const RASGOS = {
     // Objetos de Almacen de Artificiero
     vision_de_aguila: {
         nombre: "Visión de Águila",
@@ -513,7 +515,6 @@
         opciones: null,
         usos: null
     },
-    // Resguardo ya está
     carga: {
         nombre: "Carga",
         prerrequisitos: null,
