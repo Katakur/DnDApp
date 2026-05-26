@@ -519,8 +519,8 @@ export const RASGOS = {
         nombre: "Carga",
         prerrequisitos: null,
         descripcion: "Como Acción, puedes gastar de 1 a 3 cargas para realizar una Tirada de Ataque de Hehcizo a 60 pies que produce una cabeza de un animal que simula una carga con un bonificador de +7. En un acierto, por cada carga realiza 2d10 de Fuerza y es empujado a 5 pies de distancia\n \nAlternativamente, puedes gastar 1 a 3 cargas como Acción para tratar de romper un objeto a 60 pies que no se esté usando o trasportando. Realiza una Prueba de Fuerza con un bonificador +5 por carga.",
-        opciones: "3 Cargas/d3 Amanecer",
-        usos: null
+        opciones: null,
+        usos: "3 Cargas/d3 Amanecer"
     },
     vision_x: {
         nombre: "Visión X",
@@ -555,8 +555,8 @@ export const RASGOS = {
         nombre: "Obediencia",
         prerrequisitos: null,
         descripcion: "Como acción, tras presentar el objeto y verbalmente ordenar obediencia a cada creatura a 120 pies o menos. Cada objetivo debe tener éxito en una Tirada de Salvación de Sabiduría CD 15 o ser encantado por 8 horas. Mientras esté encantado de esta forma, te considera su líder de confianza. Si usted o sus compañeros le hacen daño o le ordenan algo contrario a su naturaleza, un objetivo deja de ser encatado de esta manera.",
-        opciones: "1 carga/Amanecer",
-        usos: null
+        opciones: null,
+        usos: "1 carga/Amanecer"
     },
     tentaculos: {
         nombre: "Tentáculos",
@@ -597,8 +597,8 @@ export const RASGOS = {
         nombre: "Ola de Terror",
         prerrequisitos: null,
         descripcion: "Como acción, puedes gastar 1 carga para librar una ola de terror. Cada criatura de tu elección a 30 pies, debe realizar una Tirada de Salvación de Sabiduría (CD 15) o asustarse por 1 minuto de ti. Mientras se asuste de esta forma, la criatura se esfuerza por huir de ti, no tiene reacciones, solo puede usar Correr o intentar escapar de un efecto que le retiene el movimiento, si no tiene donde correr, usa Esquivar. Al final de cada turno, puedes repetir la Tirada de Salvación para liberarse",
-        opciones: "3 cargas/d3 Amanecer",
-        usos: null
+        opciones: null,
+        usos: "3 cargas/d3 Amanecer"
     },
     fuerza_suprema: {
         nombre: "Fuerza Suprema",
