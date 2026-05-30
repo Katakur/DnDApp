@@ -856,14 +856,6 @@ export const RASGOS = {
         opciones: null,
         usos: null
     },  
-    // REVISAR CUAL ES CONOCIMIENTO ARCANO
-    conocimiento_arcano: {
-        nombre: "Conocimiento Arcano",
-        prerrequisitos: null,
-        descripcion: "Tu CA al usar este objeto es 13 + Modificador de Destreza",
-        opciones: null,
-        usos: null
-    },
     aprendizaje_heredado: {
         nombre: "Aprendizaje heredado",
         prerrequisitos: null,
