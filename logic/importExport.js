@@ -128,6 +128,14 @@ export function importarInventario({
         }
     }
 
+    /* 🔥 NUEVO: FILTRO ESTRICTO DE IMPORTACIÓN =============================== */
+    
+    const objetosValidos = objetosData.filter(obj => {
+        // Si no tiene nombre, está vacío, o se llama "Objeto sin nombre", se descarta por completo
+        const tieneNombre = obj.nombre && obj.nombre.trim() !== "" && obj.nombre !== "Objeto sin nombre";
+        return tieneNombre;
+    });
+
     /* =============================== RESTAURAR CAMPOS =============================== */
 
     const inputJugador = document.getElementById("nombreJugador");
@@ -150,23 +158,28 @@ export function importarInventario({
     base.querySelectorAll("select").forEach(s => (s.value = ""));
 
     base.querySelectorAll(".obj-rasgos").forEach((s, i) => {
-        if (i > 0) s.remove();
-        else s.value = "";
+        if (i > 0) {
+            s.parentElement.remove(); 
+        } else {
+            s.value = "";
+        }
     });
 
     /* =============================== RECREAR OBJETOS =============================== */
 
-    for (let i = 1; i < objetosData.length; i++) {
+    // Solo "clickeamos" el botón de agregar si hay objetos válidos que dibujar
+    for (let i = 1; i < objetosValidos.length; i++) {
         btnAgregar?.click();
     }
 
     const filasFinales = tbody.querySelectorAll(".objeto");
 
-    objetosData.forEach((obj, index) => {
+    objetosValidos.forEach((obj, index) => {
 
         const fila = filasFinales[index];
+        if (!fila) return; 
 
-        fila.querySelector(".obj-nombre").value = obj.nombre || "";
+        fila.querySelector(".obj-nombre").value = obj.nombre;
 
         seleccionarOpcionPorTexto(fila.querySelector(".obj-origen"), obj.origen);
         seleccionarOpcionPorTexto(fila.querySelector(".obj-cat1"), obj.cat1);
@@ -178,13 +191,11 @@ export function importarInventario({
 
             obj.rasgos.forEach((r, i) => {
                 if (i >= selects.length) {
-                    // 🔥 CORRECCIÓN: Buscamos el botón "+" específico de ESTA fila
                     const btnAgregarRasgoInterno = fila.querySelector(".btn-agregar-rasgo");
                     btnAgregarRasgoInterno?.click();
                 }
             });
 
-            // Se vuelven a buscar los selectores de la fila, incluyendo los nuevos que se acaban de crear
             const nuevosSelects = fila.querySelectorAll(".obj-rasgos");
 
             obj.rasgos.forEach((r, i) => {
