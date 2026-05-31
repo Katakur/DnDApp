@@ -178,10 +178,13 @@ export function importarInventario({
 
             obj.rasgos.forEach((r, i) => {
                 if (i >= selects.length) {
-                    btnAgregar?.click();
+                    // 🔥 CORRECCIÓN: Buscamos el botón "+" específico de ESTA fila
+                    const btnAgregarRasgoInterno = fila.querySelector(".btn-agregar-rasgo");
+                    btnAgregarRasgoInterno?.click();
                 }
             });
 
+            // Se vuelven a buscar los selectores de la fila, incluyendo los nuevos que se acaban de crear
             const nuevosSelects = fila.querySelectorAll(".obj-rasgos");
 
             obj.rasgos.forEach((r, i) => {
