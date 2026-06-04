@@ -1,3 +1,37 @@
+/* ======================= TABLA SUPERIOR (CAJAS DINÁMICAS) ======================= */
+.wrapper-rasgos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: flex-start;
+}
+
+/* 1. Por defecto: Ocupan 1/3 del espacio (ideal para 1, 3 o más rasgos) */
+.rasgo-item-wrap {
+    flex: 1 1 calc(33.333% - 6px);
+    /*max-width: calc(33.333% - 6px);*/
+    min-width: 140px; /* Evita que colapsen en pantallas pequeñas */
+    margin-bottom: 0px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fdfdfd;
+    box-sizing: border-box;
+}
+
+.rasgo-item-wrap:first-child:nth-last-child(2),
+.rasgo-item-wrap:first-child:nth-last-child(2) ~ .rasgo-item-wrap {
+    flex: 1 1 calc(50% - 6px);
+    max-width: calc(50% - 6px);
+}
+
+/* 3. El select mantiene su tamaño ideal para lectura, mientras la cajita lo abraza */
+.rasgo-item-wrap .obj-rasgos {
+    font-size: 12px;
+    padding: 3px;
+    width: 150px; 
+    max-width: 100%; 
+}
 /* ======================= FICHAS DE RASGOS (GRID COMPACTO) ======================= */
 #listaRasgos {
     display: grid;
