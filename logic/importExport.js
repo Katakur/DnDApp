@@ -21,10 +21,11 @@ Personaje: ${nombrePersonaje}
 `;
 
     const filas = tbody.querySelectorAll(".objeto");
+    let contadorObjetosReales = 0; // Para enumerar correctamente en el txt
 
-    filas.forEach((fila, index) => {
+    filas.forEach((fila) => {
 
-        const nombreObj = fila.querySelector(".obj-nombre")?.value.trim() || "Objeto sin nombre";
+        const nombreObj = fila.querySelector(".obj-nombre")?.value.trim() || "";
 
         const origenSelect = fila.querySelector(".obj-origen");
         const origen = origenSelect?.selectedOptions[0]?.text || "Ninguno";
@@ -41,15 +42,45 @@ Personaje: ${nombrePersonaje}
             .map(key => RASGOS[key]?.nombre || key)
             .join(", ") || "Ninguno";
 
-        contenidoTxt += `
+        // 🔥 Capturamos los datos de la meta
+        const metaTexto = fila.querySelector(".obj-meta-texto")?.value.trim() || "";
+        const metaCompletada = fila.querySelector(".obj-meta-completada")?.checked ? "Sí" : "No";
 
-[ Objeto ${index + 1} ]: ${nombreObj}
-  - Origen:      ${origen}
-  - Categoría 1: ${cat1}
-  - Categoría 2: ${cat2}
-  - Rasgos:      ${rasgosTexto}
-`;
+        // 🔥 Evaluamos si el objeto está completamente vacío
+        const estaVacio = 
+            nombreObj === "" && 
+            (origen === "Ninguno" || origen === "-- Seleccionar --") && 
+            (cat1 === "Ninguna" || cat1 === "-- Seleccionar --") && 
+            (cat2 === "Ninguna" || cat2 === "-- Seleccionar --") && 
+            rasgosTexto === "Ninguno" &&
+            metaTexto === ""; 
+
+        // Si está vacío, cortamos aquí y no lo escribimos en el archivo txt
+        if (estaVacio) return; 
+
+        // Si tiene al menos un dato, sumamos al contador y lo guardamos
+        contadorObjetosReales++;
+
+        // Si tiene datos pero el jugador no le puso nombre, le ponemos el por defecto
+        const nombreFinal = nombreObj !== "" ? nombreObj : "Objeto sin nombre";
+
+        contenidoTxt += `\n[ Objeto ${contadorObjetosReales} ]: ${nombreFinal}\n`;
+        contenidoTxt += `  - Origen:      ${origen}\n`;
+        contenidoTxt += `  - Categoría 1: ${cat1}\n`;
+        contenidoTxt += `  - Categoría 2: ${cat2}\n`;
+        contenidoTxt += `  - Rasgos:      ${rasgosTexto}\n`;
+        
+        // 🔥 Guardamos la meta solo si el jugador escribió algo
+        if (metaTexto !== "") {
+            contenidoTxt += `  - Meta:        ${metaTexto.replace(/\n/g, " ")}\n`;
+            contenidoTxt += `  - Completada:  ${metaCompletada}\n`;
+        }
     });
+
+    // Si después de revisar todo no había ningún objeto válido, ponemos un mensaje
+    if (contadorObjetosReales === 0) {
+        contenidoTxt += `\n(Inventario vacío)\n`;
+    }
 
     const blob = new Blob([contenidoTxt], { type: "text/plain;charset=utf-8" });
     const url = URL.createObjectURL(blob);
@@ -75,7 +106,7 @@ export function importarInventario({
     actualizarContador,
     actualizarSinergias,
     contenedorSinergias,
-    contenedorRasgos
+    contenedorRasgos // Si decides usarlo en el futuro, está aquí
 }) {
     const lineas = texto.split("\n");
 
@@ -100,7 +131,9 @@ export function importarInventario({
         if (match) {
             objetoActual = {
                 nombre: match[1].trim(),
-                rasgos: []
+                rasgos: [],
+                meta: "",
+                completada: false
             };
             objetosData.push(objetoActual);
             continue;
@@ -126,9 +159,18 @@ export function importarInventario({
                 objetoActual.rasgos = val.split(",").map(v => v.trim());
             }
         }
+        
+        // 🔥 Leer la meta del .txt
+        if (linea.includes("- Meta:")) {
+            objetoActual.meta = linea.split("- Meta:")[1].trim();
+        }
+
+        if (linea.includes("- Completada:")) {
+            objetoActual.completada = linea.split("- Completada:")[1].trim() === "Sí";
+        }
     }
 
-    /* 🔥 NUEVO: FILTRO ESTRICTO DE IMPORTACIÓN =============================== */
+    /* 🔥 FILTRO ESTRICTO DE IMPORTACIÓN =============================== */
     
     const objetosValidos = objetosData.filter(obj => {
         // Si no tiene nombre, está vacío, o se llama "Objeto sin nombre", se descarta por completo
@@ -154,16 +196,27 @@ export function importarInventario({
 
     const base = tbody.querySelector(".objeto");
 
-    base.querySelector(".obj-nombre").value = "";
-    base.querySelectorAll("select").forEach(s => (s.value = ""));
+    if (base) {
+        base.querySelector(".obj-nombre").value = "";
+        base.querySelectorAll("select").forEach(s => (s.value = ""));
 
-    base.querySelectorAll(".obj-rasgos").forEach((s, i) => {
-        if (i > 0) {
-            s.parentElement.remove(); 
-        } else {
-            s.value = "";
-        }
-    });
+        base.querySelectorAll(".obj-rasgos").forEach((s, i) => {
+            if (i > 0) {
+                s.parentElement.remove(); 
+            } else {
+                s.value = "";
+            }
+        });
+        
+        // Limpiar panel de metas base
+        const txtMeta = base.querySelector(".obj-meta-texto");
+        const chkCompletada = base.querySelector(".obj-meta-completada");
+        const panelMeta = base.querySelector(".meta-container");
+        
+        if(txtMeta) txtMeta.value = "";
+        if(chkCompletada) chkCompletada.checked = false;
+        if(panelMeta) panelMeta.style.display = "none";
+    }
 
     /* =============================== RECREAR OBJETOS =============================== */
 
@@ -203,6 +256,19 @@ export function importarInventario({
                     seleccionarOpcionPorTexto(nuevosSelects[i], r);
                 }
             });
+        }
+        
+        // 🔥 Restaurar visualmente la Meta en la UI
+        if (obj.meta) {
+            const txtMeta = fila.querySelector(".obj-meta-texto");
+            const chkCompletada = fila.querySelector(".obj-meta-completada");
+            const panelMeta = fila.querySelector(".meta-container");
+
+            if (txtMeta) txtMeta.value = obj.meta;
+            if (chkCompletada) chkCompletada.checked = obj.completada;
+            
+            // Si el objeto traía una meta guardada, dejamos el panel abierto para que se vea de inmediato
+            if (panelMeta) panelMeta.style.display = "block"; 
         }
     });
 

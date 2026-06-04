@@ -1,126 +1,68 @@
-﻿@page
-@model IndexModel
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8" />
     <title>Inventario de Jugadores</title>
     <link rel="stylesheet" href="site.css" />
 </head>
-
 <body>
 
     <h1>Inventario de Campaña</h1>
 
-    <!-- ======================= JUGADOR ======================= -->
     <section id="jugador">
         <h2>Jugador</h2>
+        <label>Nombre del jugador: <input type="text" id="nombreJugador"></label><br><br>
+        <label>Personaje: <input type="text" id="nombrePersonaje"></label><br><br>
 
-        <label>
-            Nombre del jugador:
-            <input type="text" id="nombreJugador">
-        </label>
-
-        <br><br>
-
-        <label>
-            Personaje:
-            <input type="text" id="nombrePersonaje">
-        </label>
-
-        <br><br>
-
-        <button type="button" id="btnGuardarInventario">
-            💾 Guardar Inventario
-        </button>
-
-        <button type="button" id="btnCargarFalso"
-            onclick="document.getElementById('inputCargarTxt').click()">
-            📂 Cargar Inventario
-        </button>
-
+        <button type="button" id="btnGuardarInventario">💾 Guardar Inventario</button>
+        <button type="button" id="btnCargarFalso" onclick="document.getElementById('inputCargarTxt').click()">📂 Cargar Inventario</button>
         <input type="file" id="inputCargarTxt" accept=".txt" style="display:none;">
     </section>
 
     <hr>
 
-    <!-- ======================= OBJETOS ======================= -->
     <section id="objetos">
         <h2>Objetos (max. 5)</h2>
-
+        
         <table id="tablaObjetos" border="1">
             <thead>
                 <tr>
-                    <th>Nombre</th>
-                    <th>Origen</th>
-                    <th>Categoría 1</th>
-                    <th>Categoría 2</th>
-                    <th>Rasgos</th>
+                    <th class="col-nombre">Nombre</th>
+                    <th class="col-origen">Origen</th>
+                    <th class="col-cat">Categorías</th>
+                    <th class="col-rasgos">Rasgos</th>
+                    <th class="col-accion">Eliminar</th>
                 </tr>
             </thead>
-
             <tbody>
                 <tr class="objeto">
-                    <td>
-                        <input type="text" class="obj-nombre">
+                    <td><input type="text" class="obj-nombre" placeholder="Nombre..."></td>
+                    <td><select class="obj-origen"><option value="">-- Seleccionar --</option></select></td>
+                    <td class="obj-categorias">
+                        <select class="obj-cat1"></select>
+                        <select class="obj-cat2"></select>
                     </td>
-
-                    <td>
-                        <select class="obj-origen">
-                            <option value="">-- Seleccionar --</option>
-                            <option value="arcano">Arcano</option>
-                            <option value="druidico">Druídico</option>
-                            <option value="celestial">Celestial</option>
-                            <option value="maldito">Maldito</option>
-                        </select>
-                    </td>
-
-                    <td>
-                        <select class="obj-cat1">
-                            <option value="">-- Seleccionar --</option>
-                        </select>
-                    </td>
-
-                    <td>
-                        <select class="obj-cat2">
-                            <option value="">-- Ninguna --</option>
-                        </select>
-                    </td>
-
-                    <td class="obj-rasgos-container">
-                        <select class="obj-rasgos"></select>
-                        <button type="button" class="btn-agregar-rasgo">+</button>
-                    </td>
+                    <td class="obj-rasgos-container"></td>
+                    <td class="obj-acciones" style="text-align: center;"></td>
                 </tr>
             </tbody>
         </table>
-
-        <button type="button" id="btnAgregarObjeto">
-            Agregar objeto
-        </button>
-
+        
+        <br>
+        <button type="button" id="btnAgregarObjeto">Agregar objeto</button>
         <p id="contadorObjetos">Objetos: 1 / 5</p>
 
-        <!-- ======================= SINERGIAS ======================= -->
         <section id="sinergias">
             <h2>Sinergias activas</h2>
-            <div id="listaSinergias">
-                <em>No hay sinergias activas</em>
-            </div>
+            <div id="listaSinergias"><em>No hay sinergias activas</em></div>
         </section>
     </section>
 
-    <!-- ======================= RASGOS ======================= -->
     <section id="rasgos">
         <h2>Rasgos activos</h2>
-        <div id="listaRasgos">
-            <em>No hay rasgos activos</em>
-        </div>
+        <div id="listaRasgos"><em>No hay rasgos activos</em></div>
     </section>
 
-    <!-- SCRIPT PRINCIPAL -->
     <script type="module" src="./app.js"></script>
-
 </body>
 </html>

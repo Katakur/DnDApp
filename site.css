@@ -1,34 +1,79 @@
-/* Estilo unificado para los botones de agregar [+] y eliminar [-] rasgo */
-.btn-agregar-rasgo,
-.btn-eliminar-rasgo {
-    background-color: transparent; /* Sin fondo de color */
-    color: inherit; /* Usa el color de texto de tu aplicación */
-    padding: 0px 0px; /* Espaciado muy sutil */
-    border: none; /* Sin bordes tipo caja */
-    cursor: pointer; /* Cambia el cursor a mano */
-    font-size: 16px; /* Tamaño de texto uniforme */
-    font-weight: bold; /* Negrita para que resalten un poco */
-    margin-top: 4px;
+/* ======================= FICHAS DE RASGOS (GRID COMPACTO) ======================= */
+#listaRasgos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 15px;
+    align-items: start; /* Evita que las tarjetas se estiren verticalmente de forma rara */
 }
 
-/* Pequeño efecto visual al pasar el ratón */
-.btn-agregar-rasgo:hover {
-    color: #4CAF50; /* Se vuelve verde sutil al pasar el ratón */
+.rasgo-card {
+    background-color: #fdfdfd;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: box-shadow 0.2s, border-color 0.2s;
+    overflow: hidden; /* Mantiene todo dentro de las esquinas redondeadas */
 }
 
-.btn-eliminar-rasgo:hover {
-    color: #f44336; /* Se vuelve rojo sutil al pasar el ratón */
+.rasgo-card:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    border-color: #bbb;
 }
 
-/* Elimina el recuadro azul que ponen los navegadores al hacer clic */
-.btn-agregar-rasgo:focus,
-.btn-eliminar-rasgo:focus {
-    outline: none;
+/* Cabecera Minimizada (Click para expandir) */
+.rasgo-header {
+    padding: 12px;
+    cursor: pointer;
+    position: relative;
+    background-color: #f9f9f9;
+    transition: background-color 0.2s;
 }
 
-/* Hacer que los selectores de rasgos sean más compactos */
-.rasgo-item-lista select.obj-rasgos {
-    padding: 2px 4px; /* Reduce el espacio interior vertical */
-    height: auto; /* Evita que el navegador fuerce una altura muy grande */
-    font-size: 13px; /* Opcional: reducir un punto la letra ayuda a optimizar espacio */
+.rasgo-header:hover {
+    background-color: #f1f1f1;
+}
+
+/* Flechita indicadora */
+.rasgo-header::after {
+    content: "▼";
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-size: 12px;
+    color: #888;
+    transition: transform 0.3s ease;
+}
+
+/* Gira la flechita cuando se expande */
+.rasgo-card.expanded .rasgo-header::after {
+    transform: rotate(180deg);
+}
+
+/* El texto resumen debajo del título */
+.rasgo-resumen {
+    font-size: 0.85em;
+    color: #555;
+    margin-top: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Pone "..." si el texto es muy largo */
+}
+
+/* El cuerpo expandido */
+.rasgo-detalles {
+    display: none; /* Oculto por defecto */
+    padding: 0 12px 12px 12px; /* Espaciado interno */
+    border-top: 1px solid #eee;
+    background-color: #fff;
+}
+
+/* Al expandirse, mostramos los detalles con una animación suave */
+.rasgo-card.expanded .rasgo-detalles {
+    display: block;
+    animation: fadeInDown 0.3s ease;
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
 }

@@ -1,260 +1,209 @@
-// ui/tablaObjetos.js
-import { RASGOS } from "../data/rasgos.js";
 import { CATEGORIAS } from "../data/categorias.js";
+import { ORIGENES } from "../data/origenes.js";
+import { RASGOS } from "../data/rasgos.js";
 
 export function initTablaObjetos({ onChange }) {
-
     const MAX_OBJETOS = 5;
-
     const btnAgregar = document.getElementById("btnAgregarObjeto");
     const tbody = document.querySelector("#tablaObjetos tbody");
     const contador = document.getElementById("contadorObjetos");
 
     if (!btnAgregar || !tbody || !contador) return;
 
-    /* =============================== NOTIFICAR =============================== */
+    const tooltip = document.createElement("div");
+    tooltip.className = "rasgo-tooltip";
+    tooltip.style.display = "none";
+    document.body.appendChild(tooltip);
 
     function notificar() {
         if (typeof onChange === "function") onChange();
     }
-
-    /* =============================== CONTADOR =============================== */
 
     function actualizarContador() {
         const cantidad = tbody.querySelectorAll(".objeto").length;
         contador.textContent = `Objetos: ${cantidad} / ${MAX_OBJETOS}`;
     }
 
-    /* =============================== SELECTS =============================== */
-
-    function llenarCategorias(select) {
+    function llenarSelect(select, datos, defaultText) {
         if (!select) return;
-
-        select.innerHTML = `<option value="">-- Seleccionar --</option>`;
-
-        for (const key in CATEGORIAS) {
-            const opt = document.createElement("option");
-            opt.value = key;
-            opt.textContent = CATEGORIAS[key].nombre;
-            select.appendChild(opt);
+        select.innerHTML = `<option value="">-- ${defaultText} --</option>`;
+        if (Array.isArray(datos)) {
+            datos.forEach(d => select.insertAdjacentHTML('beforeend', `<option value="${d.id}">${d.nombre}</option>`));
+        } else {
+            Object.entries(datos).forEach(([id, d]) => select.insertAdjacentHTML('beforeend', `<option value="${id}">${d.nombre}</option>`));
         }
     }
 
-    function llenarRasgos(select) {
-        if (!select) return;
-
-        select.innerHTML = `<option value="">-- Seleccionar Rasgo --</option>`;
-
-        Object.entries(RASGOS)
-            .sort((a, b) => a[1].nombre.localeCompare(b[1].nombre, "es"))
-            .forEach(([key, r]) => {
-                const opt = document.createElement("option");
-                opt.value = key;
-                opt.textContent = r.nombre;
-                select.appendChild(opt);
-            });
-    }
-
-    /* =============================== RASGOS =============================== */
-
-    function bindRasgo(select, cont, fila) {
-        select.addEventListener("change", () => {
-            actualizarDatasetRasgos(cont, fila);
-        });
-    }
-
-    function actualizarDatasetRasgos(cont, fila) {
-        const valores = [...cont.querySelectorAll(".obj-rasgos")]
-            .map(s => s.value)
-            .filter(Boolean);
-
-        fila.dataset.rasgosSeleccionados = JSON.stringify(valores);
-        notificar();
-    }
-
+    // 🔥 TABLA SÚPER COMPACTA: Solo el selector y el botón de borrar
     function crearRasgoSelector(cont, fila) {
-        const contenedorRasgo = document.createElement("div");
-        contenedorRasgo.classList.add("rasgo-item-lista");
-        // 🔥 [F-03] MODIFICADO: Estética y Diseño de Lista de Rasgos
-        // Cambiamos 'inline-flex' por 'flex' para forzar que ocupen una línea cada uno (lista vertical).
-        // Ajustamos márgenes para alineación visual con el botón [+] al final.
-        contenedorRasgo.style.display = "flex";
-        contenedorRasgo.style.alignItems = "center";
-        contenedorRasgo.style.gap = "8px";
-        contenedorRasgo.style.marginBottom = "0px";
+        const divWrap = document.createElement("div");
+        divWrap.className = "rasgo-item-wrap";
+        
+        const topRow = document.createElement("div");
+        topRow.style.display = "flex";
+        topRow.style.alignItems = "center";
+        topRow.style.gap = "4px";
 
-        const select = document.createElement("select");
-        select.classList.add("obj-rasgos");
-        select.style.flex = "1"; // El select ocupa el espacio disponible
-        select.style.width = "160";
-        select.style.minWidth = "0";
+        const selectRasgo = document.createElement("select");
+        selectRasgo.className = "obj-rasgos";
+        selectRasgo.style.flex = "1";
+        llenarSelect(selectRasgo, RASGOS, "Seleccionar");
 
-        llenarRasgos(select);
-        bindRasgo(select, cont, fila);
+        selectRasgo.addEventListener("mouseover", (e) => {
+            const val = selectRasgo.value;
+            if (e.target.tagName === "OPTION" || val) {
+                const datos = RASGOS[val];
+                if (datos) {
+                    let html = `<strong>${datos.nombre}</strong><br><br>${datos.descripcion.replace(/\n/g, '<br>')}`;
+                    if (datos.usos) html += `<br><br><em>Usos: ${datos.usos}</em>`;
+                    tooltip.innerHTML = html;
+                    tooltip.style.display = "block";
+                    tooltip.style.left = (e.pageX + 15) + "px";
+                    tooltip.style.top = (e.pageY + 15) + "px";
+                }
+            }
+        });
+        selectRasgo.addEventListener("mousemove", (e) => {
+            if (tooltip.style.display === "block") {
+                tooltip.style.left = (e.pageX + 15) + "px";
+                tooltip.style.top = (e.pageY + 15) + "px";
+            }
+        });
+        selectRasgo.addEventListener("mouseout", () => tooltip.style.display = "none");
+
+        // Al cambiar el rasgo, notificamos a la lista inferior para que lo dibuje
+        selectRasgo.addEventListener("change", notificar);
 
         const btnEliminarRasgo = document.createElement("button");
         btnEliminarRasgo.type = "button";
-        btnEliminarRasgo.classList.add("btn-eliminar-rasgo");
-        btnEliminarRasgo.textContent = "[ - ]";
-        
-        // 🔥 NUEVO: Evita que el botón se deforme o se encoja
-        btnEliminarRasgo.style.flexShrink = "0"; 
-        
+        btnEliminarRasgo.textContent = "[-]";
+        btnEliminarRasgo.className = "btn-eliminar-rasgo";
+
         btnEliminarRasgo.addEventListener("click", () => {
-            contenedorRasgo.remove();
-            actualizarDatasetRasgos(cont, fila);
-        });
-
-        contenedorRasgo.appendChild(select);
-        contenedorRasgo.appendChild(btnEliminarRasgo);
-
-        return contenedorRasgo;
-    }
-
-    /* 🔥 [F-03] NUEVO: Helper para crear el icono del basurero (SVG) */
-    function crearIconoBasurero() {
-        const svgNamespace = "http://www.w3.org/2000/svg";
-        const svg = document.createElementNS(svgNamespace, "svg");
-        svg.setAttribute("viewBox", "0 0 24 24");
-        svg.setAttribute("fill", "none");
-        svg.setAttribute("stroke", "currentColor");
-        svg.setAttribute("stroke-width", "2");
-        svg.setAttribute("stroke-linecap", "round");
-        svg.setAttribute("stroke-linejoin", "round");
-        svg.classList.add("icono-basurero");
-        svg.style.width = "18px";
-        svg.style.height = "18px";
-        svg.style.pointerEvents = "none"; // Evita que el SVG capture el clic
-
-        const polyline = document.createElementNS(svgNamespace, "polyline");
-        polyline.setAttribute("points", "3 6 5 6 21 6");
-        svg.appendChild(polyline);
-
-        const path = document.createElementNS(svgNamespace, "path");
-        path.setAttribute("d", "M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2");
-        svg.appendChild(path);
-
-        return svg;
-    }
-
-    /* =============================== FILA =============================== */
-
-    function inicializarFila(fila) {
-
-        const cat1 = fila.querySelector(".obj-cat1");
-        const cat2 = fila.querySelector(".obj-cat2");
-        const cont = fila.querySelector(".obj-rasgos-container");
-
-        if (!cat1 || !cat2 || !cont) return;
-
-        llenarCategorias(cat1);
-        llenarCategorias(cat2);
-
-        cat1.addEventListener("change", notificar);
-        cat2.addEventListener("change", notificar);
-
-        /* 🔥 RECONSTRUIR RASGOS LIMPIAMENTE */
-
-        /* 🔥 RECONSTRUIR RASGOS LIMPIAMENTE */
-
-        cont.innerHTML = "";
-
-        cont.style.display = "flex";
-        cont.style.flexWrap = "wrap"; 
-        cont.style.gap = "2px"; 
-        cont.style.alignItems = "center"; 
-        
-        // 🔥 NUEVO: Bloqueamos el crecimiento horizontal innecesario.
-        // 450px suele ser la medida perfecta para 3 rasgos delgados (110px) + sus botones [-] + espacios.
-        // Si notas que caben 4 o que solo caben 2, puedes jugar un poco con este número (ej. 420px o 480px).
-        cont.style.maxWidth = "620px";
-
-        const primer = crearRasgoSelector(cont, fila);
-        cont.appendChild(primer);
-
-        const btn = document.createElement("button");
-        btn.type = "button";
-        btn.classList.add("btn-agregar-rasgo");
-        btn.textContent = "[ + ]";
-
-        btn.addEventListener("click", () => {
-            cont.insertBefore(crearRasgoSelector(cont, fila), btn);
+            if (cont.querySelectorAll(".obj-rasgos").length > 1) {
+                divWrap.remove();
+            } else {
+                selectRasgo.value = "";
+                delete selectRasgo.dataset.dinamico; // Limpia datos guardados
+            }
             notificar();
         });
 
-        cont.appendChild(btn);
+        topRow.appendChild(selectRasgo);
+        topRow.appendChild(btnEliminarRasgo);
+        divWrap.appendChild(topRow);
 
-        if (!fila.querySelector(".btn-borrar-objeto")) {
-            const btnBorrarObjeto = document.createElement("button");
-            btnBorrarObjeto.type = "button";
-            btnBorrarObjeto.classList.add("btn-borrar-objeto");
-            // 🔥 [F-03] MODIFICADO: Icono de basurero en lugar de texto
-            btnBorrarObjeto.appendChild(crearIconoBasurero());
-            btnBorrarObjeto.title = "Borrar Objeto"; // Accesibilidad: texto al pasar el ratón
-
-            btnBorrarObjeto.addEventListener("click", () => {
-                const totalFilas = tbody.querySelectorAll(".objeto").length;
-
-                if (totalFilas > 1) {
-                    fila.remove();
-                } else {
-                    fila.querySelector(".obj-nombre").value = "";
-                    const origen = fila.querySelector(".obj-origen");
-                    if (origen) origen.value = "";
-                    cat1.value = "";
-                    cat2.value = "";
-                    fila.dataset.rasgosSeleccionados = "[]";
-                    inicializarFila(fila);
-                }
-
-                actualizarContador();
-                notificar();
-            });
-
-            if (fila.tagName === "TR") {
-                const td = document.createElement("td");
-                td.style.textAlign = "center"; // Centramos el icono en la celda
-                td.appendChild(btnBorrarObjeto);
-                fila.appendChild(td);
-            } else {
-                fila.appendChild(btnBorrarObjeto);
-            }
-        }
+        return divWrap;
     }
 
-    /* =============================== AGREGAR OBJETO =============================== */
+    function inicializarFila(fila) {
+        const inputNombre = fila.querySelector(".obj-nombre");
+        const origen = fila.querySelector(".obj-origen");
+        const cat1 = fila.querySelector(".obj-cat1");
+        const cat2 = fila.querySelector(".obj-cat2");
+        const contenedorRasgos = fila.querySelector(".obj-rasgos-container");
+        const celdaAccion = fila.querySelector(".obj-acciones");
 
-    btnAgregar.addEventListener("click", () => {
+        llenarSelect(origen, ORIGENES, "Seleccionar");
+        llenarSelect(cat1, CATEGORIAS, "Cat 1");
+        llenarSelect(cat2, CATEGORIAS, "Cat 2");
 
-        const filas = tbody.querySelectorAll(".objeto");
+        // 🔥 Notificar cuando cambian datos clave para la UI
+        inputNombre.addEventListener("change", notificar);
+        origen.addEventListener("change", notificar);
 
-        if (filas.length >= MAX_OBJETOS) return;
-
-        const nueva = filas[0].cloneNode(true);
-
-        nueva.querySelectorAll("input").forEach(i => i.value = "");
-        nueva.querySelectorAll("select").forEach(s => s.value = "");
-
-        const btnViejo = nueva.querySelector(".btn-borrar-objeto");
-        if (btnViejo) {
-            if (btnViejo.parentElement.tagName === "TD") {
-                btnViejo.parentElement.remove();
-            } else {
-                btnViejo.remove();
+        function checkCategoriasDuplicadas(modificado, elOtro) {
+            if (modificado.value !== "" && modificado.value === elOtro.value) {
+                modificado.value = ""; 
+                alert("No puedes elegir la misma categoría dos veces en el mismo objeto.");
             }
+            notificar();
         }
 
-        tbody.appendChild(nueva);
+        cat1.addEventListener("change", (e) => checkCategoriasDuplicadas(e.target, cat2));
+        cat2.addEventListener("change", (e) => checkCategoriasDuplicadas(e.target, cat1));
 
-        inicializarFila(nueva);
+        contenedorRasgos.innerHTML = "";
+        
+        const wrapperRasgos = document.createElement("div");
+        wrapperRasgos.className = "wrapper-rasgos";
+        wrapperRasgos.appendChild(crearRasgoSelector(wrapperRasgos, fila));
+        
+        const divBotones = document.createElement("div");
+        divBotones.style.marginTop = "8px";
+        
+        const btnAgregaRasgo = document.createElement("button");
+        btnAgregaRasgo.textContent = "[+] Rasgo";
+        btnAgregaRasgo.className = "btn-agregar-rasgo";
+        btnAgregaRasgo.type = "button";
+        btnAgregaRasgo.addEventListener("click", () => wrapperRasgos.appendChild(crearRasgoSelector(wrapperRasgos, fila)));
 
+        const btnEvolucion = document.createElement("button");
+        btnEvolucion.textContent = "⭐ Meta";
+        btnEvolucion.className = "btn-evolucion";
+        btnEvolucion.type = "button";
+
+        divBotones.appendChild(btnAgregaRasgo);
+        divBotones.appendChild(btnEvolucion);
+
+        const panelMeta = document.createElement("div");
+        panelMeta.className = "meta-container";
+        panelMeta.style.display = "none";
+        panelMeta.innerHTML = `
+            <textarea class="obj-meta-texto" placeholder="Escribe la meta aquí..." style="width:100%; margin-top:5px; box-sizing: border-box;"></textarea>
+            <label style="font-size:0.9em; display:flex; align-items:center; gap:5px; margin-top:5px;">
+                <input type="checkbox" class="obj-meta-completada"> Meta Completada
+            </label>
+        `;
+        btnEvolucion.addEventListener("click", () => panelMeta.style.display = panelMeta.style.display === "none" ? "block" : "none");
+
+        contenedorRasgos.appendChild(wrapperRasgos);
+        contenedorRasgos.appendChild(divBotones);
+        contenedorRasgos.appendChild(panelMeta);
+
+        celdaAccion.innerHTML = ""; 
+        const btnBorrar = document.createElement("button");
+        btnBorrar.textContent = "🗑️";
+        btnBorrar.className = "btn-borrar-objeto";
+        btnBorrar.type = "button";
+        btnBorrar.style.cursor = "pointer";
+        btnBorrar.style.fontSize = "18px";
+        btnBorrar.style.background = "transparent";
+        btnBorrar.style.border = "none";
+        
+        btnBorrar.addEventListener("click", () => {
+            if (tbody.querySelectorAll(".objeto").length > 1) {
+                fila.remove(); 
+            } else {
+                inputNombre.value = "";
+                origen.value = "";
+                cat1.value = "";
+                cat2.value = "";
+                
+                wrapperRasgos.innerHTML = "";
+                wrapperRasgos.appendChild(crearRasgoSelector(wrapperRasgos, fila));
+                
+                panelMeta.style.display = "none";
+                panelMeta.querySelector(".obj-meta-texto").value = "";
+                panelMeta.querySelector(".obj-meta-completada").checked = false;
+            }
+            actualizarContador();
+            notificar();
+        });
+
+        celdaAccion.appendChild(btnBorrar);
+    }
+
+    btnAgregar.addEventListener("click", () => {
+        const filas = tbody.querySelectorAll(".objeto");
+        if (filas.length >= MAX_OBJETOS) return;
+        const nuevaFila = filas[0].cloneNode(true);
+        tbody.appendChild(nuevaFila);
+        inicializarFila(nuevaFila); 
         actualizarContador();
         notificar();
     });
 
-    /* =============================== INIT =============================== */
-
     document.querySelectorAll(".objeto").forEach(inicializarFila);
-
     actualizarContador();
 }
