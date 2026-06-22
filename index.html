@@ -57,12 +57,32 @@
             <div id="listaSinergias"><em>No hay sinergias activas</em></div>
         </section>
     </section>
-
+    
     <section id="rasgos">
         <h2>Rasgos activos</h2>
         <div id="listaRasgos"><em>No hay rasgos activos</em></div>
     </section>
+    <button id="btnAbrirPokedex" class="btn-flotante-pokedex">📖 Pokédex de Rasgos</button>
 
+    <aside id="pokedexRasgos" class="pokedex-panel">
+        <div class="pokedex-header">
+            <h3>📖 Enciclopedia</h3>
+            <button id="btnCerrarPokedex" class="cerrar-pokedex">&times;</button>
+        </div>
+        <div class="pokedex-search">
+            <input type="text" id="buscadorPokedex" placeholder="Buscar rasgo por nombre...">
+        </div>
+        <div class="pokedex-content">
+            <ul id="listaNombresPokedex" class="pokedex-lista">
+                </ul>
+            <div id="detalleRasgoPokedex" class="pokedex-detalle" style="display: none;">
+                </div>
+        </div>
+    </aside>
+
+    <script type="module" src="./app.js"></script>
+</body>
+</html>
     <script type="module" src="./app.js"></script>
 </body>
 </html>

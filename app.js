@@ -2,6 +2,7 @@
 import { actualizarRasgos } from "./logic/rasgosLogic.js";
 import { actualizarSinergias } from "./logic/sinergias.js";
 import { initImportExport } from "./ui/initImportExport.js"; 
+import { initPokedex } from "./ui/pokedex.js"; // <-- NUEVA IMPORTACIÓN
 
 document.addEventListener("DOMContentLoaded", () => {
     /* =============================== ELEMENTOS =============================== */
@@ -27,4 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
         btnAgregar,
         actualizarTodo
     });
+
+    /* =============================== INIT POKÉDEX =============================== */
+    initPokedex(); // <-- INICIALIZAMOS EL PANEL
 });
