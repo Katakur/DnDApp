@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DnDZombielandia")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9b3bcb2105ca2f54d607d45b426584bfc384a132")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cac85a82b826a8e93de9e6fc23266df22ebac43a")]
 [assembly: System.Reflection.AssemblyProductAttribute("DnDZombielandia")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DnDZombielandia")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -829,6 +829,118 @@ export const RASGOS = {
         usos: null,
         descripcion: "Tu CA mientras portes el objetos siempre es 13 + Modificador de Destreza, incluso incosciente."
     },
+    //// NUEVOS CONJUROS + ////
+    aliento_dragon: {
+        nombre: "Aliento de Dragón+",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Cuando lances aliento de dragón obtienes las siguientes armas naturales adicionales.\nMordisco, cuerpo a cuerpo simple, d10 Perforante\nGarras, cuerpo a cuerpo sutil, d6 Cortante\nCola, cuerpo a cuerpo alcance, d8 Contundente\nSi tienes multi ataque, puedes reemplazar uno de esos ataques para usar el arma de aliento. Y si lanzas el conjuro con un espacio de conjuro más alto, el daño de cada arma natural incrementa en otro dado"
+    },
+    invocar_construccion: {
+        nombre: "Invocar Construcción+",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Cuando lances invocar construcción, ya no requiere mantener concentración y dura todo el día."
+    },
+    contra_hechizo: {
+        nombre: "Contra Hechizo+",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Cuando lances contra hechizo, puedes alternativamente almacenar parte del conjuro temporalmente manteniendo la concentración en este, como en un Conjuro, el poder almacenado dura hasta el final de tu próxima ronda o hasta que al lanzar un Conjuro de Ranura de Hechizo de nivel 2 o superior para reducir su coste igual al nivel del conjuro que cancelaste con contra hechizo hasta un mínimo de 1"
+    },
+    guia: {
+        nombre: "Guía+",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Cada vez que lances una Prueba de Habilidad, puedes añadir el Truco guía sin necesidad de componente V, S"
+    },
+    conjurar_animales: {
+        nombre: "Conjurar Animales+",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "La forma de los animales es etérea, no pueden ser dañados por medios no mágicos y todos levitan a 3p del suelo, evitando cualquier problema de terreno"
+    },
+    bendecir: {
+        nombre: "Bendecir+",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Puedes bendecir más de una vez a la misma creatura, incrementando los +d4 para Tiradas de Ataque y Tiradas de Salvación correspondientes"
+    },
+    misiles_magicos: {
+        nombre: "Misiles mágicos+",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Si una creatura es objetivo de más de un misil mágico como parte del conjuro, el daño que inflige incrementa en un área en 5 pies adicionales por cada misil recibido, cualquier otra creatura dentro de esta área recibe la mitad de daño"
+    },
+    imagen_espejo: {
+        nombre: "Imagen Espejo+",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Tras lanzar iniciativa, puedes gastar un espacio de conjuro para lanzar Imagen Espejo.\nMientras tengas Imagen Espejo activo por este método, tus Tiradas de Ataque cuerpo a cuerpo son con Ventaja"
+    },
+    vida_falsa: {
+        nombre: "Vida Falsa+",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Mientras tengas los puntos de golpe temporales de Vida Falsa, obtienes resistencia a todo tipo de daño"
+    },
+    arma_arcana: {
+        nombre: "Arma Arcana+",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "La magia de este conjuro viene de su poder más primigenio, al infligir daño con Arma Arcana, al final de tu ronda actual, todo el daño infligido con Arma Arcana en esa ronda, se repite ignorando resistencia"
+    },
+    /// FIN NUEVOS ///
+    super_golpe: {
+        nombre: "Super Golpe",
+        tipo: "estatico",
+        usos: "1 carga/Amanecer",
+        descripcion: "Una vez por turno, cuando golpeas a una creatura con un ataque que inflige daño contundente, puedes gastar una carga para empujarla una cantidad de pies iguales al daño recibido (Redondeado a múltiplo de 5, hacia abajo). Si durante ese movimiento se topa con una pared o creatura, recibe daño igual a un d6 contundente por cada 10 pies recorridos"
+    },
+    super_corte: {
+        nombre: "Super Corte",
+        tipo: "estatico",
+        usos: "1 carga/Amanecer",
+        descripcion: "Una vez por turno, cuando golpeas a una creatura con un ataque que inflige daño cortante, puedes gastar una carga para adicionalmente como parte del ataque, desarmarla. Si el ataque es crítico, puedes cortarle la mano como parte del desarme."
+    },
+    super_perforacion: {
+        nombre: "Super Perforación",
+        tipo: "estatico",
+        usos: "1 carga/Amanecer",
+        descripcion: "Una vez por turno, cuando golpeas a una creatura con un ataque que inflige daño perforante, puedes gastar una carga para reducir su armadura igual a tu modificador de competencia que usaste para el ataque."
+    },
+    // TIRADORES ///
+    tiro_mortero: {
+        nombre: "Tiro Mortero",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Tus Tiradas de Ataque con Armas a distancia ignoran todo tipo de cobertura vertical. Además, una vez por ronda, si aciertas una Tirada de Ataque en ese turno con esta arma, la siguiente tirada en ese mismo turno será con ventaja"  
+    },
+    tiro_cañon: {
+        nombre: "Tiro Cañón",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Tus Tiradas de Ataque con Armas a distancia viajan a gran velocidad e impacto, mientras estés a Larga a Distancia, tu daño incrementa en un dado del tipo del arma"  
+    },
+    tiro_nublar: {
+        nombre: "Tiro Nublar",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Tus Tiradas de Ataque con Armas a distancia dejan una densa nube de humo, si aciertas, la creatura queda cegada en oscuridad no mágica hasta el final de su siguiente turno o hasta que se mueva 5 pies"  
+    },
+    tiro_explosion: {
+        nombre: "Tiro Explosión",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Tus Tiradas de Ataque con Armas a distancia provocan daño a las creaturas a 5 pies del objetivo, recibiendo daño igual a tu modificador de ataque del tipo de daño del arma"  
+    },
+    tiro_salpicadura: {
+        nombre: "Tiro Salpicadura",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Tus Tiradas de Ataque con Armas a distancia dejan una trampa pegajosa a los pies de la creatura objetivo, dejándola agarrada hasta que use su acción para una Prueba de Atletismo (Escapar CD 10) en su turno o sea movida contra su voluntad"
+    },
+    // FIN TIRADORES ///
     conjuro_mutado: {
         nombre: "Conjuro Mutado",
         tipo: "estatico",
@@ -1128,5 +1240,11 @@ export const RASGOS = {
         tipo: "estatico",
         usos: null,
         descripcion: "Como acción, gastas una carga y en un radio de 15 pies centrado en ti mismo se crea un circulo por un mínuto. Toda Tirada de Ataque and daño dentro del círculo aumenta en +3"
+    },
+    rompe_limite: {
+        nombre: "Conjuro Rompe Límite",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Al momento de lanzar un conjuro, puedes elegir lanzarlo de un espacio de conjuro más alto, incluso si no tienes la ranura de hechizo para hacerlo. Además, durante 2d4 días tu Fuerza baja a 3 si es superior. Por cada uno de estos días que pases descansando y no haciendo más que actividades ligeras, tu tiempo de recuperación se reduce en 2 días. Por último, hay un 33% de probabilidades que seas incapaz de recargar la habilidad"
     }
 };
