@@ -175,11 +175,7 @@ export const RASGOS = {
         usos: "1 carga/Amanecer",
         descripcion: "Como acción, puedes gastar una carga para invocar a un soldado del Valhalla definido por el objeto, dura hasta que pierda todos sus puntos de golpe o se ponga el sol, sin dejar rastro. La hoja del Héroe es otorgada por el GM.",
         campos_dinamicos: {
-            lista_invocacion: {
-                tipo: "checkbox_list",
-                label: "Lista de Invocación heróica",
-                opciones: ["Caballero"]
-            }
+            nombre_del_héroe: { tipo: "texto", label: "Nombre del héroe" },
         }
     },
     invocacion_infernal: {
@@ -227,7 +223,7 @@ export const RASGOS = {
         nombre: "Conjuro Almacenado",
         tipo: "plantilla",
         usos: "1 Carga cada Conjuro/Amanecer",
-        descripcion: "Un objeto con un Conjuro innato, en caso de tener CD es 10+Competencia y su Tirada de Ataque de Hechizo es 2+Competencia. Si el conjuro requiere Concentración normalmente, ahora dura su máxima duración o su límite condicional",
+        descripcion: "Un objeto con un Conjuro innato, en caso de no tener establecido el CD o Tirada de ataque de hechizo, tienen el siguiente escalado.\nCD: 10+Competencia \nTirada de Ataque de Hechizo: 2+Competencia.\nSi el conjuro requiere Concentración normalmente, ahora dura su máxima duración o su límite condicional",
         campos_dinamicos: {
             nombre_conjuro: { tipo: "texto", label: "Nombre del conjuro" },
             cd_salvacion: { tipo: "numero", label: "CD Salvación" },
@@ -305,13 +301,13 @@ export const RASGOS = {
         nombre: "Copia",
         tipo: "estatico",
         usos: "1 Carga/Amanecer",
-        descripcion: "Invocas una proyección ilusoria tuya en un punto a 30 pies que dura una ronda. Las pruebas de Percepción o Investigación requieren superar un CD que usa tu modificador de Carisma."
+        descripcion: "Al inicio de tu ronda Invocas una proyección ilusoria tuya en un punto a 30 pies que dura una ronda. Cualquier interacción de la copia con una creatura requiere una pruebas de Percepción o Investigación con un CD escalado con Carisma, en un fallo, la creatura no sabe cual es real"
     },
     sirenido: {
         nombre: "Sirenido",
         tipo: "estatico",
         usos: null,
-        descripcion: "While estés en contacto con el agua, tu cuerpo toma una cola de pez. Obtienes pies de nado iguales a tus pies normales. Tus pruebas de Carisma son con Ventaja y puedes lanzar conjuros de Componente Verbal bajo el agua."
+        descripcion: "Mientras estés en contacto con el agua, tu cuerpo toma una cola de pez. Obtienes pies de nado iguales a tus pies normales. Tus pruebas de Carisma son con Ventaja y puedes lanzar conjuros de Componente Verbal bajo el agua."
     },
     aracnido: {
         nombre: "Arácnido",
@@ -401,7 +397,7 @@ export const RASGOS = {
         nombre: "Resistencia Mágica",
         tipo: "estatico",
         usos: null,
-        descripcion: "Resistencia en las Tiradas de Salvación de Hehcizo y otros efectos mágicos."
+        descripcion: "Resistencia en las Tiradas de Salvación de Hechizo y otros efectos mágicos."
     },
     resistencia_magicaa: {
         nombre: "Resistencia Mágica+",
@@ -617,7 +613,7 @@ export const RASGOS = {
         nombre: "Duelista+",
         tipo: "estatico",
         usos: null,
-        descripcion: "Cuando sostienes un arma cuerpo a cuerpo and ninguna otra, tras realizar una tirada de ataque puedes ubicarte en un espacio desocupado a 5 pies sin provocar ataques de oportunidad."
+        descripcion: "Cuando sostienes un arma cuerpo a cuerpo y ninguna otra en la otra mano, tras realizar una tirada de ataque puedes ubicarte en un espacio desocupado a 5 pies sin provocar ataques de oportunidad."
     },
     gran_armas: {
         nombre: "Gran Armas+",
@@ -664,7 +660,7 @@ export const RASGOS = {
     descanso_relajante: {
         nombre: "Descanso Relajante",
         tipo: "estatico",
-        usos: "1 carga/en d3 Amanecer(es)",
+        usos: null,
         descripcion: "Si tomas un día de no sobre esfuerzo (Lo establece el GM), Tras el Descanso Largo obtienes Inspiración [No acumulable]"
     },
     efecto_aleatorio: {
@@ -698,7 +694,7 @@ export const RASGOS = {
         descripcion: "Puedes respirar en cualquier entorno y tienes Ventaja en las Tiradas de Salvación contra gases, venenos inhalados y armas de aliento de algunos Dragones"
     },
     respiracion_artificial: {
-        nombre: "Resiración Artificial",
+        nombre: "Respiración Artificial",
         tipo: "estatico",
         usos: null,
         descripcion: "Cuando cubres tu rostro con este objeto, puedes respirar incluso en campos anti-magia, y no puede ser suprimida por magia"
@@ -827,7 +823,7 @@ export const RASGOS = {
         nombre: "Armadura de Mago+",
         tipo: "estatico",
         usos: null,
-        descripcion: "Tu CA mientras portes el objetos siempre es 13 + Modificador de Destreza, incluso incosciente."
+        descripcion: "Tu CA mientras portes el objetos siempre es 13 + Modificador de Destreza, incluso inconsciente."
     },
     //// NUEVOS CONJUROS + ////
     aliento_dragon: {
@@ -889,6 +885,27 @@ export const RASGOS = {
         tipo: "estatico",
         usos: null,
         descripcion: "La magia de este conjuro viene de su poder más primigenio, al infligir daño con Arma Arcana, al final de tu ronda actual, todo el daño infligido con Arma Arcana en esa ronda, se repite ignorando resistencia"
+    },
+    proteccion_bien_mal: {
+        nombre: "Protección contra el bien y el mal+",
+        tipo: "plantilla",
+        usos: null,
+        descripcion: "Tras un Descanso Corto, puedes obtener los beneficios del conjuro 'Protección contra el Bien y el Mal'contra un tipo de creatura de la lista hasta que decidas cambiarlo tras otro Descanso Corto",
+        campos_dinamicos: {
+            lista_resistencias: {
+                tipo: "checkbox_list",
+                label: "Lista de protección",
+                opciones: [
+                    "Aberración",
+                    "Celestiales",
+                    "Elementales",
+                    "Feérico",
+                    "Infernales",
+                    "No muertos"
+                ]
+            }
+        }
+    
     },
     /// FIN NUEVOS ///
     super_golpe: {
@@ -963,7 +980,7 @@ export const RASGOS = {
         nombre: "Premonición",
         tipo: "estatico",
         usos: null,
-        descripcion: "Después de un Descanso largo, lanzas un d20, el resultado del d20 lo puedes gastar en cualquier tirada de d20 de una creatura que puedas ver, siempre y cuando no estés incapacitado."
+        descripcion: "Después de un Descanso largo, lanzas un d20, el resultado del d20 lo puedes gastar en cualquier tirada de d20 de una creatura que puedas ver, siempre y cuando no estés incapacitado. Tras otro Descanso largo este d20 se cambia por otro nuevo"
     },
     diez_en_punto: {
         nombre: "10 en punto",
@@ -1017,7 +1034,7 @@ export const RASGOS = {
         nombre: "Quemadura",
         tipo: "estatico",
         usos: "2 carga/Amanecer",
-        descripcion: "En cada ronda, la primera vez que aciertes un ataque con esta arma leaves marcada al objetivo. Recibe daño por fuego igual a todo el daño de fuego recibido hasta el inicio de su turno, donde la marca desaparece."
+        descripcion: "En cada ronda, la primera vez que aciertes un ataque con esta arma marcas al objetivo. Recibe daño por fuego igual a todo el daño de fuego recibido hasta el inicio de su turno, donde la marca desaparece."
     },
     estallido: {
         nombre: "Estallido",
@@ -1062,7 +1079,7 @@ export const RASGOS = {
         descripcion: "Tus Tirada de Ataque de Hechizo a distancia ignoran la cobertura media"
     },
     precision_maldita: {
-        nombre: "Presición Maldita",
+        nombre: "Precisión Maldita",
         tipo: "estatico",
         usos: null,
         descripcion: "Cuando realizas una Tirada de Ataque de Hechizo a distancia obtiene un +2 al daño. Si en la Tirada de Ataque sale 1, el hechizo se redirige a ti."
@@ -1246,5 +1263,17 @@ export const RASGOS = {
         tipo: "estatico",
         usos: null,
         descripcion: "Al momento de lanzar un conjuro, puedes elegir lanzarlo de un espacio de conjuro más alto, incluso si no tienes la ranura de hechizo para hacerlo. Además, durante 2d4 días tu Fuerza baja a 3 si es superior. Por cada uno de estos días que pases descansando y no haciendo más que actividades ligeras, tu tiempo de recuperación se reduce en 2 días. Por último, hay un 33% de probabilidades que seas incapaz de recargar la habilidad"
+    },
+    salvacion_bendita: {
+        nombre: "Salvación Bendita",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Cuando fallas una Tirada de Salvación contra un Hechizo u otro medio mágico, puedes añadirle tu Competencia. Si la supera, cualquier daño u otro efecto del conjuro se ve anulado. Tras usar este beneficio, hay un 33% de no volver a usarlo por el resto del día"
+    },
+    salvacion_bendita: {
+        nombre: "Salvación Bendita",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Cuando fallas una Tirada de Ataque de Hechizo como parte de un Conjuro que usa al menos un Espacio de Conjuro, puedes añadirle un bonificador igual a tu Competencia. Si la supera, cualquier daño infligido por el conjuro, no es reducible por resistencias de cualquier tipo. Tras usar este beneficio, hay un 33% de no volver a usarlo por el resto del día"
     }
 };
