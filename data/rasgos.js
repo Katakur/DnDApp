@@ -1270,8 +1270,8 @@ export const RASGOS = {
         usos: null,
         descripcion: "Cuando fallas una Tirada de Salvación contra un Hechizo u otro medio mágico, puedes añadirle tu Competencia. Si la supera, cualquier daño u otro efecto del conjuro se ve anulado. Tras usar este beneficio, hay un 33% de no volver a usarlo por el resto del día"
     },
-    salvacion_bendita: {
-        nombre: "Salvación Bendita",
+    tirada_bendita: {
+        nombre: "Tirada Bendita",
         tipo: "estatico",
         usos: null,
         descripcion: "Cuando fallas una Tirada de Ataque de Hechizo como parte de un Conjuro que usa al menos un Espacio de Conjuro, puedes añadirle un bonificador igual a tu Competencia. Si la supera, cualquier daño infligido por el conjuro, no es reducible por resistencias de cualquier tipo. Tras usar este beneficio, hay un 33% de no volver a usarlo por el resto del día"
