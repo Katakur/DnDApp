@@ -222,7 +222,7 @@ export const RASGOS = {
     conjuro_almacenado: {
         nombre: "Conjuro Almacenado",
         tipo: "plantilla",
-        usos: "1 Carga cada Conjuro/Amanecer",
+        usos: null,
         descripcion: "Un objeto con un Conjuro innato, en caso de no tener establecido el CD o Tirada de ataque de hechizo, tienen el siguiente escalado.\nCD: 10+Competencia \nTirada de Ataque de Hechizo: 2+Competencia.\nSi el conjuro requiere Concentración normalmente, ahora dura su máxima duración o su límite condicional",
         campos_dinamicos: {
             nombre_conjuro: { tipo: "texto", label: "Nombre del conjuro" },
@@ -1156,6 +1156,78 @@ export const RASGOS = {
         usos: null,
         descripcion: "Al portar este objeto, las Tiradas de Ataque con arma a distancia aumentan en +1 por cada 10 pies que estés de la criatura. Este efecto aplica siempre que no tengas Desventaja en la Tirada de Ataque"
     },
+    ////////////////////// TATUAJES SOBRE NATURAL ////////////////////////////////77
+    agarre_sobrenatural: {
+        nombre: "Agarre sobrenatural",
+        tipo: "estatico",
+        usos: "1 uso/Amanecer",
+        descripcion: "Como acción, envuelves en una mano espectral a una creatura a 15 pies de ti, obligandola a realizar una Tirada de Salvación de Fuerza CD 15 o recibir 3d6 de Fuerza y el objetivo queda agarrado"
+    },
+    garras_sobrenaturales: {
+        nombre: "Garras sobrenaturales",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Tus golpes desarmados son mágicos y obtienen un bonificador a las Tiradas de ataque y daño igual a tu inteligencia, además de infligir 1d6 de Fuerza"
+    },
+    proteccion_sobrenatural: {
+        nombre: "Protección sobrenatural",
+        tipo: "plantilla",
+        usos: null,
+        descripcion: "Te protege un vínculo maldito, obtienes un CA igual al especificado en el objeto",
+        campos_dinamicos: {
+            Clase_Armadura: { tipo: "texto", label: "Clase de Armadura" }
+        }
+    },
+    mitigar_danno: {
+        nombre: "Mitigar daño",
+        tipo: "estatico",
+        usos: "1 uso/Amanecer",
+        descripcion: "Como reacción al recibir daño de cualquier fuente, puedes reducir el daño infligido reduciendolo a la mitad"
+    },
+    mejora_sobrenatural: {
+        nombre: "Mejora sobrenatural",
+        tipo: "plantilla",
+        usos: null,
+        descripcion: "Ventaja en Pruebas de Habilidad definida por la mejora",
+        campos_dinamicos: {
+            vent_hab: { tipo: "texto", label: "Prueba(s) de Habilidad(es)" },
+        }
+    },
+    paso_fantasma: {
+        nombre: "Paso fantasma",
+        tipo: "estatico",
+        usos: "3 uso/Amanecer",
+        descripcion: "Como acción, te vuelves incorpóreo durante 1 minuto"
+    },
+    salvaguarda: {
+        nombre: "Salvaguarda",
+        tipo: "estatico",
+        usos: "1 uso/Amanecer",
+        descripcion: "Mientras tengas usos, cuando tus puntos de golpe se reduzcan a 0, en su lugar, se reducen a 1"
+    },
+    absorcion_sobrenatural: {
+        nombre: "Absorción sobrenatural",
+        tipo: "plantilla",
+        usos: "1 uso/Amanecer",
+        descripcion: "Como acción, por 1 minuto obtienes inmunidad al tipo de daño elegido por la absorción, y cada vez que recibes de este tipo de daño, recuperas puntos de golpe iguales a la mitad del daño recibido",
+        campos_dinamicos: {
+            tipos_daño: {
+                tipo: "checkbox_list",
+                label: "Tipos de daño",
+                opciones: ["Contundente", "Perforante", "Cortante", "Acido", "Frío", "Fuego", "Fuerza", "Relámpago", "Necrótico", "Veneno", "Psiquico", "Radiante", "Trueno"]
+            }
+        }
+    
+    },
+    vision_oscuridad: {
+        nombre: "Visión en la oscuridad",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Obtienes visión en la oscuridad definida por el objeto",
+        campos_dinamicos: {
+            vision_oscuridad_pies: { tipo: "texto", label: "Visión en la oscuridad por pies" },
+        }
+    },
     estoque_radiante: {
         nombre: "Estoque Radiante",
         tipo: "estatico",
@@ -1257,6 +1329,30 @@ export const RASGOS = {
         tipo: "estatico",
         usos: null,
         descripcion: "Como acción, gastas una carga y en un radio de 15 pies centrado en ti mismo se crea un circulo por un mínuto. Toda Tirada de Ataque and daño dentro del círculo aumenta en +3"
+    },
+    deseo_heroico: {
+        nombre: "Deseo heróico",
+        tipo: "estático",
+        usos: null,
+        descripcion: "Al sacar un 20 en un d20 para una Tirada de Salvación, recibes inspiración",
+    },
+    deseo_destructivo: {
+        nombre: "Deseo destructivo",
+        tipo: "estático",
+        usos: null,
+        descripcion: "Al sacar un 20 en un d20 para una Tirada de Ataque, infliges máximo daño",
+    },
+    deseo_compasivo: {
+        nombre: "Deseo compasivo",
+        tipo: "estático",
+        usos: null,
+        descripcion: "Al sacar un 1 en un d20 para una Tirada de Salvación, obtienes resistencia a todo tipo de daño hasta el final de tu siguiente turno",
+    },
+    deseo_apostador: {
+        nombre: "Deseo apostador",
+        tipo: "estático",
+        usos: null,
+        descripcion: "Al sacar un 1 en un d20 para una Tirada de Ataque, puedes elegir repetir el d20. Si sale de nuevo 1, ganas un nivel de agotamiento",
     },
     rompe_limite: {
         nombre: "Conjuro Rompe Límite",
