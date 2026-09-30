@@ -134,11 +134,37 @@ export const CATEGORIAS = {
                 3: "Dependiendo de la Resistencia elegida obtienes un Rasgo. Necrótico: Visión en la oscuridad verdadera 60p | Radiante: Obtienes inmunidad al Cegado y Ensordecido"
             }
         },
+        //// CATEGORÍAS DLC ////
         tecnico: {
             nombre: "Técnico",
             beneficios: {
+                1: "Puedes crear Paquete(s) de Sintonización (Por Objeto Técnico)",
                 2: "Tus Tiradas para mantener Concentración CD 10, se consideran un éxito automático",
-                3: "Puedes reforzar una de tus infusiones que requieran sintonización, aplicando un módulo de mejora adicional"
+                3: "A cada Objeto con Técnico le puedes añadir un módulo de mejora"
+            }
+        },
+        marca_sangre: {
+            nombre: "Marca de Sangre",
+            beneficios: {
+                1: "Puedes gastar dados de golpe para recuperar cargas de una Marca de Sangre",
+                2: "Los usos de Rasgos entre Marca de Sangre se unen en una lista de cargas compartida",
+                3: "A cada Marca de Sangre le puedes añadir un rasgo adicional (Resistencia al Daño, Inmunidad a Estado o Mejora sobrenatural)"
+            }
+        },
+        escriba_arcana: {
+            nombre: "Escriba Arcana",
+            beneficios: {
+                1: "Reduce el tiempo de copiar un Conjuro en 1 hora (Por Escriba Arcana) hasta un mínimo de 1 hora",
+                2: "Si gastas una Ranura de Hechizo o usas un pergamino, lanzas un d20, en un 20, restauras un Espacio de Conjuro (Hasta un nivel de conjuro igual a la cantidad de Escriba Arcana)",
+                3: "A cada Escriba Arcana le puedes añadir un Conjuro innato de tu lista conocida (Hasta un nivel de conjuro igual a la cantidad de Escriba Arcana)"
+            }
+        },
+        compuesto_Q: {
+            nombre: "Compuesto Q",
+            beneficios: {
+                1: "Tu categoría incrementa en una talla (Por cada Compuesto Q)",
+                2: "La duración de los compuestos Q se suman. Al terminar el efecto, terminas cualquier condición sobre ti mismo, pero ganas un nivel de agotamiento",
+                3: "A cada compuesto Q le añades Máxima Habilidad (a elección)"
             }
         }
     };

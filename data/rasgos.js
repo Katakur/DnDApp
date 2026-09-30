@@ -175,7 +175,7 @@ export const RASGOS = {
         usos: "1 carga/Amanecer",
         descripcion: "Como acción, puedes gastar una carga para invocar a un soldado del Valhalla definido por el objeto, dura hasta que pierda todos sus puntos de golpe o se ponga el sol, sin dejar rastro. La hoja del Héroe es otorgada por el GM.",
         campos_dinamicos: {
-            nombre_del_héroe: { tipo: "texto", label: "Nombre del héroe" },
+            nombre_del_héroe: { tipo: "texto", label: "Nombre del héroe" }
         }
     },
     invocacion_infernal: {
@@ -184,14 +184,8 @@ export const RASGOS = {
         usos: "3 cargas/d3 Amanecer",
         descripcion: "Realizas una invocación infernal definida por el rol del objeto. Tras invocar un demonio, se gasta una carga. Hasta que no pierda todos sus puntos de golpe, peleará atacando al objetivo que gatilló la invocación, si la creatura o el Objetivo cae a 0 puntos de golpe, la invocación desaparece sin dejar rastro. Si recibe daño de otra creatura, esta se vuelve el nuevo Objetivo. La hoja del Demonio es otorgada por el GM.",
         campos_dinamicos: {
-            lista_invocacion: {
-                tipo: "checkbox_list",
-                label: "Lista de Invocación infernal",
-                opciones: [
-                    "Ataque: Tras realizas daño puedes invocar un Sangrón",
-                    "Defensa: Tras recibir daño puedes invocar un Castrón"
-                ]
-            }
+            rol_infernal: { tipo: "texto", label: "rol (Al infligir daño / Al recibir daño)" },
+            tipo_demonio: { tipo: "texto", label: "tipo de demonio" }
         }
     },
     extremofilo: {
@@ -907,6 +901,42 @@ export const RASGOS = {
         }
     
     },
+    eldritch_blast: {
+        nombre: "Eldritch Blast+",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Si una creatura es objetivo de más de un Eldritch Blast como parte del truco, marca a la creatura, al inicio de su ronda, cada Eldritch Blast recibido, se disparan desde la creatura marcada a una o más creaturas diferentes dentro de ese alcance."
+    },
+    armadura_agathys: {
+        nombre: "Armadura de Agathys+",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Mientras tengas los puntos de golpe temporales de Armadura de Agathys, obtienes inmunidad a todo tipo de Condición\n Si tenías una condición previo a obtener los puntos de golpe, este se reanuda solo si aún sería persistente por duración o condición."
+    },
+    armas_hadar: {
+        nombre: "Armas de Hadar+",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Al lanzar Armas de Hadar, puedes alternativamente forzar el estado aprisionado a las creaturas que fallen la Tirada de Salvación de Fuerza, quedando vinculados a ti, durante 1 minuto o hasta perder la concentración en este, cómo en un conjuro"
+    },
+    represion_infernal: {
+        nombre: "Represión Infernal+",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Al lanzar Represión inferal, puedes alternativamente forzar el estado Asustado a la creatura, si falla la Tirada de Salvación de Sabiduría, durando 1 minuto o hasta perder la Concentración en este, cómo en un conjuro"
+    },
+    hex: {
+        nombre: "Hex+",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "La característica elegida, reduce su puntuación de modificadores a 3, y no puede subir mientras dure Hex"
+    },
+    rayo_bruja: {
+        nombre: "Rayo de Bruja+",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "En los turnos subsiguientes tras acertar Rayo de Bruja, al infligir el daño como Acción adicional, el daño realiza el máximo posible"
+    },
     /// FIN NUEVOS ///
     super_golpe: {
         nombre: "Super Golpe",
@@ -1371,5 +1401,27 @@ export const RASGOS = {
         tipo: "estatico",
         usos: null,
         descripcion: "Cuando fallas una Tirada de Ataque de Hechizo como parte de un Conjuro que usa al menos un Espacio de Conjuro, puedes añadirle un bonificador igual a tu Competencia. Si la supera, cualquier daño infligido por el conjuro, no es reducible por resistencias de cualquier tipo. Tras usar este beneficio, hay un 33% de no volver a usarlo por el resto del día"
+    },
+    paquete_sintonización: {
+        nombre: "Paquete de Sintonización",
+        tipo: "plantilla",
+        usos: null,
+        descripcion: "Durante un Descanso Corto, elige 2 objetos sintonizables (4 si eres artificiero), estos se almacenan en el interior del objeto.\n Tras lanzar iniciativa, como reacción, puedes activar este Paquete de sintonización para invocar y reemplazar temporalmente tu equipamiento actual con el almacenado en el objeto, instantáneamente te sintonizas con el conjunto invocado. Alternativamente, puedes usar una Acción para invocarlos igualmente.\nEste equipamiento dura 1 minuto, hasta que te quedes a 0 puntos de golpe, quedes incosciente o uses una Acción para guardarlo. Todo el equipamiento regresa al Objeto Sintonizable Técnico, también puedes sacarlos del paquete en un Descanso Corto.",
+        campos_dinamicos: {
+            lista_objetos: { tipo: "texto", label: "Lista de Objetos" }
+        }
+    },
+    modulo_mejora: {
+        nombre: "Módulo de mejora",
+        tipo: "plantilla",
+        usos: null,
+        descripcion: "Elige uno de los siguientes bonificadores para este objeto",
+        campos_dinamicos: {
+            temperaturas: {
+                tipo: "select",
+                label: "Mejoras",
+                opciones: ["+2 al CA", "+2 Tiradas de Salvación contra Conjuros", "+1 CD y Tiradad de Ataque de Hechizo", "+1 Tirada de Ataque y Daño con Armas", "+15 pies de Alcance/Rango", "+5 en las Tiradas de Iniciativa"]
+            }
+        }
     }
 };

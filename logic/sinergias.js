@@ -28,11 +28,15 @@ export function actualizarSinergias(tbody, contenedor) {
         if (!categoria) return;
 
         const beneficios = [];
-
         const b = categoria.beneficios || {};
-
-        if (cantidad >= 2 && b[2]) beneficios.push(b[2]);
-        if (cantidad >= 3 && b[3]) beneficios.push(b[3]);
+        
+        // REEMPLAZO: Bucle dinámico que revisa desde 1 hasta la cantidad de objetos que tengas
+        for (let i = 1; i <= cantidad; i++) {
+            // Si existe un beneficio para esta cantidad específica en categorias.js, lo añade
+            if (b[i]) {
+                beneficios.push(b[i]);
+            }
+        }
 
         if (!beneficios.length) return;
 
