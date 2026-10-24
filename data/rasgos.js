@@ -125,6 +125,19 @@ export const RASGOS = {
             }
         }
     },
+    escama_dragon_gema: {
+        nombre: "Escama de dragón Gema",
+        tipo: "plantilla",
+        usos: null,
+        descripcion: "Tus tiradas de Ataque con Arma a distancia realizan un d6 de daño adicional, el tipo de daño depene tipo de dragón.",
+        campos_dinamicos: {
+            lista_estadisticas: {
+                tipo: "checkbox_list",
+                label: "Lista de Estadísticas",
+                opciones: ["Amatista (Fuerza)", "Cristal (Radiante)", "Esmeralda (Psíquico)", "Zafiro (Trueno)", "Topacio (Necrótico)"]
+            }
+        }
+    },
     refuerzo: {
         nombre: "Refuerzo",
         tipo: "plantilla",
@@ -899,7 +912,6 @@ export const RASGOS = {
                 ]
             }
         }
-    
     },
     eldritch_blast: {
         nombre: "Eldritch Blast+",
@@ -936,6 +948,30 @@ export const RASGOS = {
         tipo: "estatico",
         usos: null,
         descripcion: "En los turnos subsiguientes tras acertar Rayo de Bruja, al infligir el daño como Acción adicional, el daño realiza el máximo posible"
+    },
+    color_spray: {
+        nombre: "Color Spray+",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Si una criatura afectada por este Conjuro es tu aliada, en lugar de quedar cegada, obtiene inmunidad a todo daño hasta el final de su siguiente turno"
+    },
+    perdona_moribundos: {
+        nombre: "Perdona a los moribundos+",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Cuando estabilizas a una criatura con este truco, una sombra aparece en su espacio. La sombra utiliza las estadísticas de la criatura estabilizada, es controlada por ella y tiene puntos de golpes máximos iguales a los puntos de golpe máximo de dicha criatura. Su CA es 10 y tiene vulnerabilidad a todo tipo de daño, excepto al necrótico, cual son resistentes. La sombra desaparece si es derrotada, si la criatura estabilizada recupera la conciencia o si lanzas estre truco sobre otra criatura"
+    },
+    toque_helado: {
+        nombre: "Toque helado+",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Cuando impactes una Tirada de Ataque con arma cuerpo a cuerpo, puedes lanzar el truco Toque Helado contra la criatura impactada como Acción adicional, sin realizar una Tirada de Ataque de Hechizo. El truco impacta automáticamente"
+    },
+    fragmento_mental: {
+        nombre: "Fragmento mental+",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Cuando una creatura falle una Tirada de Salvación contra uno de tus trucos que inflija daño, puedes lanzar el truco Fragmento mental contra esa creatura como Acción adicional, sin que realice una Tirada de Salvación"
     },
     /// FIN NUEVOS ///
     super_golpe: {
@@ -987,7 +1023,38 @@ export const RASGOS = {
         usos: null,
         descripcion: "Tus Tiradas de Ataque con Armas a distancia dejan una trampa pegajosa a los pies de la creatura objetivo, dejándola agarrada hasta que use su acción para una Prueba de Atletismo (Escapar CD 10) en su turno o sea movida contra su voluntad"
     },
+    tiro_sigilo: {
+        nombre: "Tiro Sigilo",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Tus Tiradas de Ataque con Armas a distancia cubren la visión del objetivo con magia oscura al impactar. Tras acertar, puedes realizar una Prueba de Habilidad de Destreza (Sigilo) para ocultarte de la criatura impactada. Si tiene éxito, permaneces oculto de ella hasta el inicio de tu siguiente turno"  
+    },
+    tiro_robavida: {
+        nombre: "Tiro Robavida",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Tus Tiradas de Ataque con Armas a distancia arrebatan parte de la vitalidad del objetivo. Cuando inflijas daño a una criatura con un ataque de este tiro, recuperas puntos de golpe iguales a la mitad del daño infligido, hasta un máximo igual a tus puntos de golpes máximos."
+    },
     // FIN TIRADORES ///
+    explosion_primigenia: {
+        nombre: "Explosión primigenia",
+        tipo: "plantilla",
+        usos: null,
+        descripcion: "Cuando inflijas daño del Elemento correspondiente del objeto, puedes añadir tu competencia y añadir un efecto adicional según el elemento\n El efecto dura hasta el fin de tu próximo turno a menos que vuelvas a aplicar el mismo tipo de daño a la creatura",
+        campos_dinamicos: {
+            lista_resistencias: {
+                tipo: "checkbox_list",
+                label: "Elemento, Efecto",
+                opciones: [
+                    "Fuego: Cegado",
+                    "Frío: Agarrado",
+                    "Relámpago: Paralizado",
+                    "Trueno: Ensordecido",
+                    "Ácido: CA -1 (Hasta un mínimo de 10)"
+                ]
+            }
+        }
+    },
     conjuro_mutado: {
         nombre: "Conjuro Mutado",
         tipo: "estatico",
@@ -1251,12 +1318,24 @@ export const RASGOS = {
     },
     vision_oscuridad: {
         nombre: "Visión en la oscuridad",
-        tipo: "estatico",
+        tipo: "plantilla",
         usos: null,
         descripcion: "Obtienes visión en la oscuridad definida por el objeto",
         campos_dinamicos: {
             vision_oscuridad_pies: { tipo: "texto", label: "Visión en la oscuridad por pies" },
         }
+    },
+    tercer_ojo: {
+        nombre: "Tercer Ojo",
+        tipo: "estatico",
+        usos: "3 Cargas/d3 Amanecer",
+        descripcion: "Como acción gastas una carga y obtienes 120 pies de visión verdadera por 10 minutos",
+    },
+    inasfixiable: {
+        nombre: "Inasfixiable",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Mientras no estés en un campo antimagia o similar, puede ignorar cualquier gas o ausencia de aire"
     },
     estoque_radiante: {
         nombre: "Estoque Radiante",
@@ -1323,6 +1402,18 @@ export const RASGOS = {
         tipo: "estatico",
         usos: null,
         descripcion: "Al realizar daño necrótico, puedes añadirle tu modificador de competencia al daño. Tu daño necrótico no puede ser recuperado por medios no mágicos hasta un Descanso Largo."
+    },
+    necrosis: {
+        nombre: "Necrosis",
+        tipo: "estatico",
+        usos: "1 carga/Amanecer",
+        descripcion: "Una vez por turno, cuando infliges daño Necrótico, puedes gastar una carga para eliminar Resistencia al daño Necrótico o volver una Inmunidad al Necrótico en una Resistencia a este. Este efecto dura 1 minuto."
+    },
+    corta_cura: {
+        nombre: "Corta Cura",
+        tipo: "estatico",
+        usos: "1 carga/Amanecer",
+        descripcion: "Una vez por turno, cuando infliges daño Necrótico, puedes gastar una carga para impedir que la creatura recupere puntos de golpe. Este efecto dura 1 minuto."
     },
     obediencia: {
         nombre: "Obediencia",
@@ -1421,6 +1512,27 @@ export const RASGOS = {
                 tipo: "select",
                 label: "Mejoras",
                 opciones: ["+2 al CA", "+2 Tiradas de Salvación contra Conjuros", "+1 CD y Tiradad de Ataque de Hechizo", "+1 Tirada de Ataque y Daño con Armas", "+15 pies de Alcance/Rango", "+5 en las Tiradas de Iniciativa"]
+            }
+        }
+    },
+    mini_caos: {
+        nombre: "Mini Caos",
+        tipo: "plantilla",
+        usos: null,
+        descripcion: "Cuando se cumpla una condición determinada, tira una tabla de Magia Salvaje proporcionada por el GM",
+        campos_dinamicos: {
+            temperaturas: {
+                tipo: "select",
+                label: "Condición",
+                opciones: [
+                    "Obtienes éxito crítico en una Prueba de Habilidad", 
+                    "Obtienes fallo crítico en una Prueba de Habilidad", 
+                    "Obtienes éxito crítico en Tirada de Salvación (Fuerza, Destreza, Constitución)", 
+                    "Obtienes fallo crítico en Tirada de Salvación (Fuerza, Destreza, Constitución)", 
+                    "Obtienes éxito crítico en Tirada de Salvación (Inteligencia, Sabiduría, Carisma)", 
+                    "Obtienes fallo crítico en Tirada de Salvación (Inteligencia, Sabiduría, Carisma)", 
+                    "Obtienes éxito crítico en Tirada de Ataque",
+                    "Obtienes fallo crítico en Tirada de Ataque" ]
             }
         }
     }

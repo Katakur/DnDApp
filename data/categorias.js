@@ -166,5 +166,13 @@ export const CATEGORIAS = {
                 2: "La duración de los compuestos Q se suman. Al terminar el efecto, terminas cualquier condición sobre ti mismo, pero ganas un nivel de agotamiento",
                 3: "A cada compuesto Q le añades Máxima Habilidad (a elección)"
             }
+        },
+        magia_caotica: {
+            nombre: "Magia Caótica",
+            beneficios: {
+                1: "Una vez por Descanso Corto, puedes obtener Ventaja en una Prueba de Habilidad (a elección)",
+                2: "Cuando tires en una tabla de un objeto Magia Caótica, puedes tirar un número de veces igual a la cantidad de objetos Mágica Caótica que tengas y elegir uno de los resultados",
+                3: "A cada objeto Magia Caótica le puedes añadir el rasgo Mini caos (a elección)"
+            }
         }
     };
