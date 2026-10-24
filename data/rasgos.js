@@ -214,6 +214,7 @@ export const RASGOS = {
             }
         }
     },
+    /// MOVER A CONJUROS + //
     polimorfia_mejorada: {
         nombre: "Polimorfia+",
         tipo: "plantilla",
@@ -296,7 +297,6 @@ export const RASGOS = {
             }
         }
     },
-
     // --- RASGOS ESTÁTICOS ---
     reflejo_ilusorio: {
         nombre: "Reflejo ilusorio",
@@ -484,6 +484,7 @@ export const RASGOS = {
         usos: null,
         descripcion: "Obtienes la capacidad de Iluminar usando tu mente, la luz está centrada en ti y el radio se basa en la Puntuación de Habilidad Inteligencia.\n3 a 7 (5p), 8 a 11 (10p), 12 a 15 (20p), 16+ (30p)"
     },
+    /// Escuela de Magia //
     evocacion_imprudente: {
         nombre: "Evocación Imprudente",
         tipo: "estatico",
@@ -570,15 +571,35 @@ export const RASGOS = {
     },
     lenguaje_prestado: {
         nombre: "Lenguaje Prestado",
-        tipo: "estatico",
+        tipo: "plantilla",
         usos: null,
-        descripcion: "Obtienes competencia a un tipo de lenguaje otorgado por el objeto"
+        descripcion: "Obtienes competencia a un tipo de lenguaje otorgado por el objeto",
+        campos_dinamicos: {
+            lista_invocacion: {
+                tipo: "checkbox_list",
+                label: "Idioma",
+                opciones: [
+                    "Primordial",
+                    "Silvano",
+                    "Dracónido",
+                    "Abisal",
+                    "Celestial"
+                ]
+            }
+        }
     },
-    maxima_habilidad: {
+    maxima_habilidad: { ////
         nombre: "Máxima Habilidad",
-        tipo: "estatico",
+        tipo: "plantilla",
         usos: null,
-        descripcion: "Tu puntuación de Habilidad (Decidida por el objeto) es 19. No tiene efecto si tienes 19 o más"
+        descripcion: "Tu puntuación de Habilidad (Decidida por el objeto) es 19. No tiene efecto si tienes 19 o más",
+        campos_dinamicos: {
+            lista_invocacion: {
+                tipo: "checkbox_list",
+                label: "Habilidad",
+                opciones: ["Fuerza","Destreza","Constitución","Inteligencia","Sabiduría","Carisma"]
+            }
+        }
     },
     vision_de_aguila: {
         nombre: "Visión de Águila",
@@ -814,6 +835,7 @@ export const RASGOS = {
         usos: null,
         descripcion: "El objeto se transforma en cualquier herramienta de Artesano y obtienes un truco de artificiero"
     },
+    //// CONJUROS + ////
     drenaje: {
         nombre: "Absorber Elemento+",
         tipo: "estatico",
@@ -832,7 +854,6 @@ export const RASGOS = {
         usos: null,
         descripcion: "Tu CA mientras portes el objetos siempre es 13 + Modificador de Destreza, incluso inconsciente."
     },
-    //// NUEVOS CONJUROS + ////
     aliento_dragon: {
         nombre: "Aliento de Dragón+",
         tipo: "estatico",
@@ -973,7 +994,50 @@ export const RASGOS = {
         usos: null,
         descripcion: "Cuando una creatura falle una Tirada de Salvación contra uno de tus trucos que inflija daño, puedes lanzar el truco Fragmento mental contra esa creatura como Acción adicional, sin que realice una Tirada de Salvación"
     },
-    /// FIN NUEVOS ///
+    prestidigitacion: {
+        nombre: "Prestidigitacion+",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Puedes alternativamente tomar por objetivo a una criatura a 30 pies, esa criatura queda marcada hasta 10 minutos mientras mantengas la concentración como en un conjuro. Al final de cada turno de la criatura marcada, lanza un d6, un efecto de Prestidigitación potenciado afectará a la criatura hasta el final de su próximo turno. La tabla de efecto es otorgada por el GM"
+    },
+    taumaturgia: {
+        nombre: "Taumaturgia+",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Puedes alternativamente tomar por objetivo a un aliado a 30 pies, esa criatura queda marcada hasta 10 minutos mientras mantengas la concentración como en un conjuro. Al final de cada turno de la criatura marcada, lanza un d6, un efecto de Taumaturgia potenciado afectará a la criatura hasta el final de su próximo turno. La tabla de efecto es otorgada por el GM"
+    },
+    /// Pruebas de Habilidad+
+    atletismo: {
+        nombre: "Atletismo+",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Como acción adicional, realizas una Prueba de Atletismo y según el resultado obtienes más o menos beneficios por 1 minuto\n- 10: +10 de movimiento\n- 15: Tu salto alto y largo son máximo resultado si tienes los pies disponibles\n- 20: Añadir el resultado de la prueba a la tirada de daño con armas por Fuerza\n- 25: Te restauras cualquier condición o nivel de agotamiento, los niveles de agotamiento vuelven una vez terminado los beneficios\n- 30: Tus tiradas de Ataque con armas obtienen Crítico con 18-20 natural\n\nPuedes repetir la prueba en un turno posterior para expandir el tiempo. Si sale menos que tu resultado actual, no obtienes beneficios ni se expande el tiempo, si sale más, el tiempo se reinicia y mejora beneficios si sale uno lo suficientemente alto"
+    },
+    acrobacia: {
+        nombre: "Acrobacia+",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Como acción adicional, y no tienes tus pies de movimiento retenidos de ninguna manera, puedes realizar una pirueta para reposicionarte sin recibir ataques de oportunidad. El CD es igual a la Percepción pasiva más alta de las criaturas en tu alcance"
+    },
+    juego_de_manos: {
+        nombre: "Juegos de Manos+",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Como acción adicional, y si tienes al menos una mano desocupada, puedes realizar un intento de robo a objetos pequeños que no estén en manos de una criatura. El CD se determina por la Percepción pasiva de la criatura"
+    },
+    sigilo: {
+        nombre: "Sigilo+",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Como acción adicional, y si no estás expuesto a nadie tras de alguna cobertura total, puedes realizar una prueba de Sigilo para ocultarte de tus enemigos y obtener los beneficios de Escondido. El CD es igual a la Percepción pasiva más alta de las criaturas en el campo de visión"
+    },
+    iniciativa: {
+        nombre: "Iniciativa+",
+        tipo: "estatico",
+        usos: null,
+        descripcion: ""
+    },
+    /// Super Ataques
     super_golpe: {
         nombre: "Super Golpe",
         tipo: "estatico",
@@ -1199,6 +1263,7 @@ export const RASGOS = {
         usos: null,
         descripcion: "Como acción adicional, pronuncias unas palabras de comando y puedes hacer que el Objeto levite hasta 30 pies de ti. Puedes terminar su duración si la agarras, sales de su cuerpo o cumple su función.\n- Si es un arma, como acción adicional, puedes realizar una Tirada de Ataque y daño con tus modificadores de daño. Realiza hasta 4 ataques.\n- Si es un escudo, como Acción adicional, puedes aumentar la clase de armadura igual a la del escudo a una creatura de tu elección dentro de tu rango (incluyéndote), se esforzará por seguirla y protegerla flotando hasta 30 pies de ti, bloquea hasta 4 ataques.\nTras cumplir su función vuela 30 pies e intenta volver a tu mano. Si no alcanza o tienes las manos ocupadas cae al suelo"
     },
+    /// Fatality //
     muerte_instantanea: {
         nombre: "Fatality: Muerte Instantánea",
         tipo: "estatico",
@@ -1253,7 +1318,7 @@ export const RASGOS = {
         usos: null,
         descripcion: "Al portar este objeto, las Tiradas de Ataque con arma a distancia aumentan en +1 por cada 10 pies que estés de la criatura. Este efecto aplica siempre que no tengas Desventaja en la Tirada de Ataque"
     },
-    ////////////////////// TATUAJES SOBRE NATURAL ////////////////////////////////77
+    /// TATUAJES SOBRE NATURAL //
     agarre_sobrenatural: {
         nombre: "Agarre sobrenatural",
         tipo: "estatico",
@@ -1367,7 +1432,7 @@ export const RASGOS = {
         usos: "3 Cargas/d3 Amanecer",
         descripcion: "Como Acción, puedes gastar de 1 a 3 cargas para realizar una Tirada de Ataque de Hehcizo a 60 pies que produce una cabeza de un animal que simula una carga con un bonificador de +7. En un acierto, por cada carga realiza 2d10 de Fuerza y es empujado a 5 pies de distancia. Alternativamente, puedes gastar 1 a 3 cargas como Acción para tratar de romper un objeto a 60 pies que no se esté usando o trasportando. Realiza una Prueba de Fuerza con un bonificador +5 por carga."
     },
-    Fugaz: {
+    fugaz: {
         nombre: "Fugaz",
         tipo: "estatico",
         usos: "3 Cargas/Amanecer",
@@ -1451,6 +1516,7 @@ export const RASGOS = {
         usos: null,
         descripcion: "Como acción, gastas una carga y en un radio de 15 pies centrado en ti mismo se crea un circulo por un mínuto. Toda Tirada de Ataque and daño dentro del círculo aumenta en +3"
     },
+    /// DESEOS //
     deseo_heroico: {
         nombre: "Deseo heróico",
         tipo: "estático",
@@ -1475,6 +1541,7 @@ export const RASGOS = {
         usos: null,
         descripcion: "Al sacar un 1 en un d20 para una Tirada de Ataque, puedes elegir repetir el d20. Si sale de nuevo 1, ganas un nivel de agotamiento",
     },
+    /// OBJETOS LEGENDARIOS
     rompe_limite: {
         nombre: "Conjuro Rompe Límite",
         tipo: "estatico",
@@ -1493,6 +1560,7 @@ export const RASGOS = {
         usos: null,
         descripcion: "Cuando fallas una Tirada de Ataque de Hechizo como parte de un Conjuro que usa al menos un Espacio de Conjuro, puedes añadirle un bonificador igual a tu Competencia. Si la supera, cualquier daño infligido por el conjuro, no es reducible por resistencias de cualquier tipo. Tras usar este beneficio, hay un 33% de no volver a usarlo por el resto del día"
     },
+    /// Rasgos de Sinergias
     paquete_sintonización: {
         nombre: "Paquete de Sintonización",
         tipo: "plantilla",
