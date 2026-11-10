@@ -1600,6 +1600,30 @@ export const RASGOS = {
         usos: null,
         descripcion: "Como acción, gastas una carga y en un radio de 15 pies centrado en ti mismo se crea un circulo por un mínuto. Toda Tirada de Ataque and daño dentro del círculo aumenta en +3"
     },
+    caos_elemental: {
+        nombre: "Caos Elemental",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Cuando infliges daño elemental (Fuego, Frío, Relámpago, Trueno, Ácido), tira un d6. Con un resultado del 1 al 5, el tipo de daño cambia al correspondiente según la Tabla otorgada por el GM. Con un resultado de 6, el daño Elemental se inflige por igual por cada tipo de daño Elemental"
+    },
+    invoc_caotica: {
+        nombre: "Invocación Caótica",
+        tipo: "estatico",
+        usos: "1 carga/Amanecer",
+        descripcion: "Como acción, puedes gastar 1 carga para invocar una criatura nacida del Caos. Tira un d12 de la Tabla de invocación, proporcionada por el GM. La criatura permanece hasta que muere o termine el día"
+    },
+    caos_salvaje: {
+        nombre: "Caos Salvaje",
+        tipo: "estatico",
+        usos: "2 carga/Amanecer",
+        descripcion: "Como acción adicional, puedes gastar 1 carga para tomar una forma del Caos. Tira un d20 en la Tabla de forma, proporcionada por el GM. La duración de la trasformación sigue las mismas reglas de Polimorfar"
+    },
+    caos_salvajee: {
+        nombre: "Caos Salvaje+",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Al usar Caos Salvaje, esta nueva forma mantiene tu Inteligencia, Sabiduría y Carisma. Puedes lanzar Conjuros y obtienes Ventaja en las Tiradas de Salvación mientras tengas esta forma"
+    },
     /// DESEOS //
     deseo_heroico: {
         nombre: "Deseo heróico",
