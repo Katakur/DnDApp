@@ -1035,7 +1035,91 @@ export const RASGOS = {
         nombre: "Iniciativa+",
         tipo: "estatico",
         usos: null,
-        descripcion: ""
+        descripcion: "Como Acción adicional, realizas una nueva Tirada de Iniciativa. El nuevo resultado determina el orden de tu turno a partir del inicio de la siguiente ronda"
+    },
+    arcana: {
+        nombre: "Arcana+",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Como Acción adicional, mejoras temporalmente tu magia realizando una Prueba de Arcana, tu proximo daño realizado por parte de un Conjuro o efecto mágico, recibe un bonificador igual al resultado de la prueba"
+    },
+    historia: {
+        nombre: "Historia+",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Como Acción adicional, puedes realizar un rápido estudio sobre una criatura para identificar características como resistencias, inmunidades, estadísticas o rasgos. El CD de la prueba de Habilidad es igual a 8+CR de la criatura"
+    },
+    investigacion: {
+        nombre: "Investigación+",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Como Acción adicional, y si no estás cegado, puedes realizar una rápida observación sobre una criatura para identificar características a la vista. El CD de la prueba de Habilidad es igual a 8 + CR de la criatura"
+    },
+    naturaleza: {
+        nombre: "Naturaleza+",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Como Acción adicional, puedes realizar un rápido conocimiento de una criatura o entorno para identificar características como Resistencias, Inmunidades, Estadísticas o Rasgos. El CD de la prueba de Habilidad es igual a 8 + CR de la Criatura"
+    },
+    religion: {
+        nombre: "Religión+",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Como Acción adicional, puedes realizar un corto cántico celestial para obtener resistencia al daño de una criatura de categoría No muerto, Demonio, Aberraciones o Similares que puedas ver. El CD de la prueba de Habilidad es igual a 8 + CR de la criatura"
+    },
+    tratoanimales: {
+        nombre: "Trato con Animales+",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Como Acción adicional, mpuedes realizar una Prueba de Trato con Animales para encantar una criatura Bestia (o similar). El CD de la prueba de Habilidad es igual a 8 + CR de la Criatura"
+    },
+    perspicacia: {
+        nombre: "Perspicacia+",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Como Acción adicional, mejoras temporalmente tus fintas realizando una Prueba de Perspicacia, tu proximo daño realizado por parte de un ataque con arma, recibe un bonificador igual al resultado de la prueba del daño del tipo del arma"
+    },
+    medicina: {
+        nombre: "Medicina+",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Como Acción adicional, y si tienes las manos desocupadas, puedes realizar una Prueba de Medicina a una criatura, que no seas tu, a tu alcance, la criatura recupera puntos de golpe iguales al resultado de la prueba realizada. Alternativamente, puedes terminar el envenenamiento en una criatura en lugar de recuperar los puntos de golpe."
+    },
+    percepcio: {
+        nombre: "Percepción+",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Como Acción adicional, y no estás cegado, puedes realizar una Prueba de Percepción para mejorar tus reflejos defensivos. Para la siguiente Tirada de Ataque contra ti, tu CA es el resultado de la Prueba en caso de ser mayor a tu CA actual. En caso de realizar primero una Tirada de Salvación fallida, el reflejo se gasta cambiando el resultado de la Prueba, volviendo un fallo en un posible éxito"
+    },
+    supervivencia: {
+        nombre: "Supervivencia+",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Como Acción adicional, y si tienes las manos desocupadas, puedes realizar una Prueba de Sueprvivencia sobre ti mismo, recuperas puntos de golpe iguales al resultado de la Prueba realizada. Alternativamente, puedes terminar el envenenamiento en ti mismo en lugar de recuperar los puntos de golpe"
+    },
+    engaño: {
+        nombre: "Engaño+",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Como Acción adicional, puedes realizar una prueba de Engaño a una criatura que pueda oirte y verte, la criatura realiza una Tirada de Salvación de Inteligencia contra el resultado de tu Prueba. En un fallo, puedes encantarla para darle un nuevo objetivo al cual perseguir por su siguiente turno"
+    },
+    intimidacion: {
+        nombre: "Intimidación+",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Como Acción adicional, puedes realizar una prueba de Intimidación a una criatura que pueda oirte y verte, la criatura realiza una Tirada de Salvación de Sabiduría contra el resultado de tu prueba. En un fallo, la criatura queda asustada de ti hasta el final de su siguiente turno"
+    },
+    interpretacion: {
+        nombre: "Interpretación+",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Como Acción adicional, puedes realizar una prueba de Interpretación, e intentar imitar una Acción de alguna criatura que haya sido realizada desde el final de tu turno anterior. El CD de la Prueba es 8 + CD de la Criatura. En un éxito, realizas la misma acción con tus estadísticas (Adaptable según el GM)"
+    },
+    persuasion: {
+        nombre: "Persuasión+",
+        tipo: "estatico",
+        usos: null,
+        descripcion: "Como Accióna dicional, puedes realizas una Prueba de Persuasión a una criatura que pueda oirte y verte, la criatura realiza una Tirada de Salvación de Carisma contra el resultado de tu prueba. En un fallo, la criatura queda encantada y te ayuda por el siguiente minuto o hasta que desconfíe de tí o un aliado tuyo"
     },
     /// Super Ataques
     super_golpe: {
