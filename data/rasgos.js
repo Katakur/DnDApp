@@ -1543,7 +1543,7 @@ export const RASGOS = {
     marchitar: {
         nombre: "Marchitar",
         tipo: "estatico",
-        usos: null,
+        usos: "3 cargas/d3 Amanecer",
         descripcion: "Al acertar daño con esta arma, realiza su daño normal, y puede gastar 1 carga para infligir 2d10 necrótico extra al objetivo. Además, el objetivo debe superar una Tirada de Salvación de Constitución CD 15 o tener desventaja en las pruebas de Habilidad y Salvación de Fuerza y Constitución por 1 hora."
     },
     pudrir: {
